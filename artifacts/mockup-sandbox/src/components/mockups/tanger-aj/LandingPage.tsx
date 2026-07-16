@@ -1,62 +1,256 @@
 import React, { useEffect, useState } from 'react';
-import { 
-  ArrowRight, Building2, ChevronRight, Hammer, HardHat, Mail, 
-  MapPin, MoveUpRight, Phone, Ruler, Truck, ShieldCheck, 
-  Wrench, CheckCircle2, ChevronDown
+import {
+  ArrowRight, Building2, ChevronRight, Hammer, HardHat, Mail,
+  MapPin, MoveUpRight, Phone, Ruler, Truck, ShieldCheck,
+  Wrench, CheckCircle2, ChevronDown, Home, RefreshCw, Paintbrush, Globe
 } from 'lucide-react';
 
+// ─── Translations ────────────────────────────────────────────────────────────
+
+const translations = {
+  fr: {
+    nav: {
+      about: 'À propos',
+      services: 'Services',
+      projects: 'Réalisations',
+      contact: 'Contact',
+      quote: 'Demander un devis',
+    },
+    hero: {
+      tagline: 'Construction · Rénovation · Restauration',
+      headline1: 'NOUS BÂTISSONS',
+      headline2: 'VOTRE AVENIR.',
+      sub: 'Expertise, rigueur et passion au service de vos projets de construction, rénovation et restauration partout en France.',
+      cta1: 'Voir nos réalisations',
+      cta2: 'Nous contacter',
+      scroll: 'Défiler',
+    },
+    stats: [
+      { value: '20+', label: "Années d'expérience" },
+      { value: '300+', label: 'Projets livrés' },
+      { value: '100%', label: 'Satisfaction client' },
+      { value: '12', label: 'Régions couvertes' },
+    ],
+    about: {
+      title: 'PLUS QUE DES BÂTISSEURS.\nNOUS CRÉONS DES LIEUX DE VIE.',
+      p1: "Chez Tanger AJ Construction, nous mettons notre savoir-faire au service de vos ambitions. Chaque chantier est une promesse tenue — dans les délais, dans le budget, avec le soin du détail qui fait la différence.",
+      p2: "De la maison individuelle à la restauration de bâtiments historiques, en passant par la rénovation complète d'appartements ou la construction de bâtiments commerciaux, notre équipe apporte la même exigence sur chaque projet.",
+      link: 'Notre histoire',
+    },
+    services: {
+      eyebrow: 'Nos expertises',
+      title: 'UN SAVOIR-FAIRE COMPLET',
+      sub: 'Des solutions globales pour chaque étape de votre projet, du premier coup de crayon à la remise des clés.',
+      items: [
+        { title: 'Construction neuve', icon: Building2, desc: "Maisons individuelles, immeubles résidentiels, locaux commerciaux — nous accompagnons la construction de A à Z avec une maîtrise d'œuvre rigoureuse et transparente." },
+        { title: 'Rénovation complète', icon: Wrench, desc: "Transformation complète d'appartements, maisons et locaux professionnels. Électricité, plomberie, isolation, cloisons, finitions — tout sous un même toit." },
+        { title: 'Restauration', icon: RefreshCw, desc: "Restauration de bâtiments anciens, monuments et façades classées. Respect des matériaux d'origine et des techniques traditionnelles, certifiés patrimoine." },
+        { title: 'Construction de logements', icon: Home, desc: "Programmes de logements collectifs et résidences privées. Nous gérons chaque lot avec la précision d'un chef d'orchestre, du gros œuvre aux finitions." },
+        { title: 'Aménagement intérieur', icon: Paintbrush, desc: "Cuisine, salle de bain, parquet, carrelage, peinture — nos artisans qualifiés subliment chaque espace avec des matériaux soigneusement sélectionnés." },
+        { title: 'Gestion de projet', icon: ShieldCheck, desc: "Pilotage complet du chantier : coordination des corps de métier, gestion administrative, suivi budgétaire et reporting régulier. Vous restez serein." },
+      ],
+    },
+    projects: {
+      eyebrow: 'Réalisations',
+      title: 'NOS TRAVAUX PARLENT POUR NOUS',
+      proj1: {
+        tag: '01 — RÉNOVATION RÉSIDENTIELLE',
+        title: 'VILLA BELLE ÉPOQUE',
+        desc: "Rénovation complète d'une villa des années 1920 à Lyon : mise aux normes électriques, isolation thermique, restauration des moulures d'origine et création d'une extension contemporaine.",
+        items: ['480 m² rénovés', 'Durée : 8 mois', 'Livraison avant délai'],
+      },
+      proj2: {
+        tag: '02 — CONSTRUCTION NEUVE',
+        title: 'RÉSIDENCE LES ÉRABLES',
+        desc: "Programme de 24 logements BBC en région parisienne. Conception bioclimatique, matériaux locaux, espaces communs soignés et livraison clé en main pour chaque acquéreur.",
+        items: ['24 logements', 'Certification BBC', 'Zéro défaut à la réception'],
+      },
+      cta: 'Voir le détail du projet',
+    },
+    advantage: {
+      title: "L'AVANTAGE\nTANGER AJ",
+      sub: "Nous ne faisons pas de promesses en l'air. Nous livrons. Notre engagement envers la qualité et la transparence nous distingue depuis 20 ans.",
+      items: [
+        { title: 'SÉCURITÉ SANS COMPROMIS', desc: "La sécurité de nos équipes et de nos clients est non négociable. Protocoles stricts, formations continues, zéro accident." },
+        { title: 'RESPECT DES DÉLAIS', desc: "Un planning tenu est un gage de confiance. Nous planifions avec précision et anticipons chaque aléa pour livrer à la date promise." },
+        { title: 'QUALITÉ CERTIFIÉE', desc: "Artisans RGE, assurance décennale, matériaux sélectionnés — chaque étape est validée pour vous offrir un ouvrage pérenne." },
+      ],
+    },
+    contact: {
+      eyebrow: 'Prêt à démarrer ?',
+      title: "PARLONS DE\nVOTRE PROJET.",
+      sub: "Que ce soit une rénovation, une construction ou une restauration, notre équipe est disponible pour étudier votre projet et vous proposer un devis gratuit et détaillé.",
+      phone: 'Ligne directe',
+      email: 'Email',
+      address: 'Siège social',
+      addressValue: '12 Rue du Bâtisseur\n75011 Paris, France',
+      form: {
+        title: 'DEMANDER UN DEVIS GRATUIT',
+        firstName: 'Prénom',
+        lastName: 'Nom',
+        emailLabel: 'Adresse e-mail',
+        phoneLabel: 'Téléphone',
+        projectType: 'Type de projet',
+        projectTypes: ['Construction neuve', 'Rénovation complète', 'Restauration', 'Aménagement intérieur', 'Gestion de projet', 'Autre'],
+        details: 'Décrivez votre projet',
+        detailsPlaceholder: 'Surface, localisation, délai souhaité, budget approximatif...',
+        submit: 'Envoyer ma demande',
+      },
+    },
+    footer: {
+      tagline: "Votre partenaire de confiance pour construire, rénover et restaurer partout en France.",
+      services: 'SERVICES',
+      company: 'ENTREPRISE',
+      serviceLinks: ['Construction neuve', 'Rénovation complète', 'Restauration', 'Aménagement intérieur'],
+      companyLinks: [
+        { label: 'À propos', href: '#about' },
+        { label: 'Réalisations', href: '#projects' },
+        { label: 'Carrières', href: '#' },
+        { label: 'Contact', href: '#contact' },
+      ],
+      legal: 'TOUS DROITS RÉSERVÉS.',
+      privacy: 'POLITIQUE DE CONFIDENTIALITÉ',
+      terms: "CONDITIONS D'UTILISATION",
+    },
+  },
+  en: {
+    nav: {
+      about: 'About',
+      services: 'Services',
+      projects: 'Projects',
+      contact: 'Contact',
+      quote: 'Get a Quote',
+    },
+    hero: {
+      tagline: 'Construction · Renovation · Restoration',
+      headline1: 'WE BUILD',
+      headline2: 'YOUR FUTURE.',
+      sub: 'Expertise, precision and passion driving your construction, renovation and restoration projects across France.',
+      cta1: 'View Our Work',
+      cta2: 'Contact Us',
+      scroll: 'Scroll',
+    },
+    stats: [
+      { value: '20+', label: 'Years of Experience' },
+      { value: '300+', label: 'Projects Delivered' },
+      { value: '100%', label: 'Client Satisfaction' },
+      { value: '12', label: 'Regions Covered' },
+    ],
+    about: {
+      title: 'MORE THAN BUILDERS.\nWE CREATE PLACES TO LIVE.',
+      p1: "At Tanger AJ Construction, we put our expertise at the service of your ambitions. Every project is a promise kept — on time, on budget, with the attention to detail that makes the difference.",
+      p2: "From individual homes to the restoration of historic buildings, through full apartment renovations or commercial construction, our team brings the same high standards to every project.",
+      link: 'Our story',
+    },
+    services: {
+      eyebrow: 'Our Expertise',
+      title: 'COMPLETE KNOW-HOW',
+      sub: 'Comprehensive solutions for every stage of your project, from first sketch to key handover.',
+      items: [
+        { title: 'New Construction', icon: Building2, desc: "Individual homes, residential buildings, commercial premises — we manage construction from A to Z with rigorous and transparent project management." },
+        { title: 'Full Renovation', icon: Wrench, desc: "Complete transformation of apartments, houses and professional premises. Electrical, plumbing, insulation, partitions, finishes — all under one roof." },
+        { title: 'Restoration', icon: RefreshCw, desc: "Restoration of old buildings, monuments and listed facades. Respect for original materials and traditional techniques, heritage certified." },
+        { title: 'Residential Housing', icon: Home, desc: "Collective housing programmes and private residences. We manage every lot with precision, from structural work to finishes." },
+        { title: 'Interior Design', icon: Paintbrush, desc: "Kitchen, bathroom, flooring, tiling, painting — our skilled craftsmen enhance every space with carefully selected materials." },
+        { title: 'Project Management', icon: ShieldCheck, desc: "Complete site management: coordination of trades, administrative management, budget tracking and regular reporting. You stay stress-free." },
+      ],
+    },
+    projects: {
+      eyebrow: 'Projects',
+      title: 'OUR WORK SPEAKS FOR ITSELF',
+      proj1: {
+        tag: '01 — RESIDENTIAL RENOVATION',
+        title: 'VILLA BELLE ÉPOQUE',
+        desc: "Complete renovation of a 1920s villa in Lyon: electrical upgrades, thermal insulation, restoration of original mouldings and creation of a contemporary extension.",
+        items: ['480 m² renovated', 'Duration: 8 months', 'Delivered ahead of schedule'],
+      },
+      proj2: {
+        tag: '02 — NEW CONSTRUCTION',
+        title: 'LES ÉRABLES RESIDENCE',
+        desc: "Programme of 24 low-energy homes in the Paris region. Bioclimatic design, local materials, carefully designed communal areas and turnkey delivery for each buyer.",
+        items: ['24 units', 'BBC Certification', 'Zero defects at handover'],
+      },
+      cta: 'View Project Details',
+    },
+    advantage: {
+      title: "THE TANGER AJ\nADVANTAGE",
+      sub: "We don't make empty promises. We deliver. Our commitment to quality and transparency has set us apart for 20 years.",
+      items: [
+        { title: 'SAFETY WITHOUT COMPROMISE', desc: "The safety of our teams and clients is non-negotiable. Strict protocols, continuous training, zero accidents." },
+        { title: 'ON-TIME DELIVERY', desc: "Meeting deadlines is a matter of trust. We plan with precision and anticipate every challenge to deliver on the promised date." },
+        { title: 'CERTIFIED QUALITY', desc: "RGE-certified craftsmen, ten-year warranty, selected materials — every stage is validated to offer you a lasting, quality build." },
+      ],
+    },
+    contact: {
+      eyebrow: 'Ready to Start?',
+      title: "LET'S TALK ABOUT\nYOUR PROJECT.",
+      sub: "Whether it's a renovation, construction or restoration, our team is available to assess your project and provide a free, detailed quote.",
+      phone: 'Direct Line',
+      email: 'Email',
+      address: 'Head Office',
+      addressValue: '12 Rue du Bâtisseur\n75011 Paris, France',
+      form: {
+        title: 'REQUEST A FREE QUOTE',
+        firstName: 'First Name',
+        lastName: 'Last Name',
+        emailLabel: 'Email Address',
+        phoneLabel: 'Phone Number',
+        projectType: 'Project Type',
+        projectTypes: ['New Construction', 'Full Renovation', 'Restoration', 'Interior Design', 'Project Management', 'Other'],
+        details: 'Describe your project',
+        detailsPlaceholder: 'Surface area, location, desired timeline, approximate budget...',
+        submit: 'Send My Request',
+      },
+    },
+    footer: {
+      tagline: "Your trusted partner for building, renovating and restoring across France.",
+      services: 'SERVICES',
+      company: 'COMPANY',
+      serviceLinks: ['New Construction', 'Full Renovation', 'Restoration', 'Interior Design'],
+      companyLinks: [
+        { label: 'About Us', href: '#about' },
+        { label: 'Projects', href: '#projects' },
+        { label: 'Careers', href: '#' },
+        { label: 'Contact', href: '#contact' },
+      ],
+      legal: 'ALL RIGHTS RESERVED.',
+      privacy: 'PRIVACY POLICY',
+      terms: 'TERMS OF USE',
+    },
+  },
+};
+
+// ─── Component ───────────────────────────────────────────────────────────────
+
 export function LandingPage() {
+  const [lang, setLang] = useState<'fr' | 'en'>('fr');
   const [scrolled, setScrolled] = useState(false);
+  const t = translations[lang];
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-zinc-100 font-body overflow-x-hidden selection:bg-[#ff5a00] selection:text-white">
+    <div className="min-h-screen bg-[#0a0a0a] text-zinc-100 overflow-x-hidden selection:bg-[#ff5a00] selection:text-white" style={{ fontFamily: "'Manrope', sans-serif" }}>
       <style dangerouslySetInnerHTML={{ __html: `
         @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&display=swap');
-        
-        .font-heading { 
-          font-family: 'Bebas Neue', sans-serif; 
-          letter-spacing: 0.02em; 
-        }
-        .font-body { 
-          font-family: 'Manrope', sans-serif; 
-        }
-        
-        .text-stroke {
-          -webkit-text-stroke: 1px rgba(255, 255, 255, 0.15);
-          color: transparent;
-        }
-
-        .clip-diagonal {
-          clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%);
-        }
-        
-        .clip-diagonal-bottom {
-          clip-path: polygon(0 5%, 100% 0, 100% 100%, 0 100%);
-        }
-
-        .reveal-hover .reveal-content {
-          max-height: 0;
-          opacity: 0;
-          transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        
-        .reveal-hover:hover .reveal-content {
-          max-height: 200px;
-          opacity: 1;
-          margin-top: 1rem;
-        }
+        .font-heading { font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.02em; }
+        .clip-diagonal { clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%); }
+        .clip-diagonal-bottom { clip-path: polygon(0 5%, 100% 0, 100% 100%, 0 100%); }
+        .reveal-hover .reveal-content { max-height: 0; opacity: 0; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal-hover:hover .reveal-content { max-height: 200px; opacity: 1; margin-top: 1rem; }
+        .text-stroke { -webkit-text-stroke: 1px rgba(255,255,255,0.12); color: transparent; }
+        .lang-btn { transition: all 0.2s ease; }
+        .lang-btn.active { background: #ff5a00; color: white; }
+        .lang-btn:not(.active) { background: transparent; color: #71717a; }
+        .lang-btn:not(.active):hover { color: white; }
       `}} />
 
-      {/* Navigation */}
-      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b ${scrolled ? 'bg-[#0a0a0a]/90 backdrop-blur-md border-white/10 py-4' : 'bg-transparent border-transparent py-6'}`}>
+      {/* ── NAV ── */}
+      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b ${scrolled ? 'bg-[#0a0a0a]/92 backdrop-blur-md border-white/10 py-3' : 'bg-transparent border-transparent py-5'}`}>
         <div className="container mx-auto px-6 md:px-12 flex justify-between items-center">
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 bg-[#ff5a00] flex items-center justify-center">
@@ -64,28 +258,43 @@ export function LandingPage() {
             </div>
             <span className="font-heading text-2xl md:text-3xl tracking-wider pt-1">TANGER AJ</span>
           </div>
-          
+
           <div className="hidden md:flex items-center gap-8 text-sm font-semibold tracking-wide uppercase text-zinc-300">
-            <a href="#about" className="hover:text-[#ff5a00] transition-colors">About</a>
-            <a href="#services" className="hover:text-[#ff5a00] transition-colors">Services</a>
-            <a href="#projects" className="hover:text-[#ff5a00] transition-colors">Projects</a>
-            <a href="#contact" className="hover:text-[#ff5a00] transition-colors">Contact</a>
+            <a href="#about" className="hover:text-[#ff5a00] transition-colors">{t.nav.about}</a>
+            <a href="#services" className="hover:text-[#ff5a00] transition-colors">{t.nav.services}</a>
+            <a href="#projects" className="hover:text-[#ff5a00] transition-colors">{t.nav.projects}</a>
+            <a href="#contact" className="hover:text-[#ff5a00] transition-colors">{t.nav.contact}</a>
           </div>
 
-          <a href="#contact" className="hidden md:flex items-center gap-2 bg-white text-black px-6 py-2.5 font-bold uppercase text-sm hover:bg-[#ff5a00] hover:text-white transition-colors duration-300">
-            Get a Quote <MoveUpRight className="w-4 h-4" />
-          </a>
+          <div className="flex items-center gap-3">
+            {/* Language toggle */}
+            <div className="flex items-center border border-zinc-700 overflow-hidden rounded-sm">
+              <button
+                onClick={() => setLang('fr')}
+                className={`lang-btn px-3 py-1.5 text-xs font-bold uppercase tracking-wider ${lang === 'fr' ? 'active' : ''}`}
+              >FR</button>
+              <div className="w-px h-5 bg-zinc-700" />
+              <button
+                onClick={() => setLang('en')}
+                className={`lang-btn px-3 py-1.5 text-xs font-bold uppercase tracking-wider ${lang === 'en' ? 'active' : ''}`}
+              >EN</button>
+            </div>
+
+            <a href="#contact" className="hidden md:flex items-center gap-2 bg-white text-black px-5 py-2.5 font-bold uppercase text-xs tracking-wider hover:bg-[#ff5a00] hover:text-white transition-colors duration-300">
+              {t.nav.quote} <MoveUpRight className="w-3.5 h-3.5" />
+            </a>
+          </div>
         </div>
       </nav>
 
-      {/* HERO SECTION */}
+      {/* ── HERO ── */}
       <section className="relative min-h-[100dvh] flex items-center justify-center clip-diagonal bg-[#0a0a0a] pt-20">
         <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/60 to-black/30 z-10" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/92 via-black/65 to-black/30 z-10" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent z-10" />
-          <img 
-            src="/__mockup/images/tanger-aj-hero.jpg" 
-            alt="Construction site at golden hour" 
+          <img
+            src="/__mockup/images/tanger-aj-hero.jpg"
+            alt="Chantier de construction"
             className="w-full h-full object-cover object-center"
           />
         </div>
@@ -94,112 +303,85 @@ export function LandingPage() {
           <div className="max-w-4xl">
             <div className="flex items-center gap-4 mb-6">
               <div className="w-12 h-1 bg-[#ff5a00]" />
-              <p className="uppercase tracking-[0.2em] text-[#ff5a00] font-bold text-sm">Industrial & Commercial Construction</p>
+              <p className="uppercase tracking-[0.2em] text-[#ff5a00] font-bold text-sm">{t.hero.tagline}</p>
             </div>
-            <h1 className="font-heading text-7xl md:text-8xl lg:text-[10rem] leading-[0.85] tracking-tight mb-8">
-              WE BUILD THE <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-b from-white to-zinc-500">FUTURE.</span>
+            <h1 className="font-heading text-7xl md:text-8xl lg:text-[9rem] leading-[0.88] tracking-tight mb-8">
+              {t.hero.headline1}<br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-b from-white to-zinc-500">{t.hero.headline2}</span>
             </h1>
             <p className="text-lg md:text-xl text-zinc-400 max-w-2xl mb-12 font-medium leading-relaxed">
-              Strength in every structure. We engineer and build uncompromising projects for those who demand precision, scale, and reliability.
+              {t.hero.sub}
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <a href="#projects" className="bg-[#ff5a00] text-white px-8 py-4 font-bold uppercase tracking-wider flex items-center justify-center gap-3 hover:bg-orange-600 transition-colors group">
-                View Our Work <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                {t.hero.cta1} <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </a>
               <a href="#contact" className="border border-zinc-700 bg-black/50 backdrop-blur-sm text-white px-8 py-4 font-bold uppercase tracking-wider flex items-center justify-center gap-3 hover:bg-white hover:text-black transition-colors">
-                Contact Us
+                {t.hero.cta2}
               </a>
             </div>
           </div>
         </div>
-        
-        <div className="absolute bottom-12 left-6 md:left-12 z-20 flex flex-col items-center gap-4 animate-bounce">
-          <span className="writing-vertical text-xs tracking-widest text-zinc-500 font-bold uppercase rotate-180" style={{ writingMode: 'vertical-rl' }}>Scroll</span>
-          <ChevronDown className="w-5 h-5 text-zinc-500" />
+
+        <div className="absolute bottom-12 left-6 md:left-12 z-20 flex flex-col items-center gap-4">
+          <span className="text-xs tracking-widest text-zinc-500 font-bold uppercase" style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}>{t.hero.scroll}</span>
+          <ChevronDown className="w-5 h-5 text-zinc-500 animate-bounce" />
         </div>
       </section>
 
-      {/* STATS & INTRO SECTION */}
+      {/* ── STATS & ABOUT ── */}
       <section id="about" className="py-24 bg-[#0a0a0a] relative z-10 -mt-20">
         <div className="container mx-auto px-6 md:px-12">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 border-b border-zinc-800 pb-20">
-            <div>
-              <h3 className="font-heading text-5xl md:text-7xl text-[#ff5a00]">25+</h3>
-              <p className="text-zinc-500 uppercase tracking-widest text-sm font-bold mt-2">Years Active</p>
-            </div>
-            <div>
-              <h3 className="font-heading text-5xl md:text-7xl">150+</h3>
-              <p className="text-zinc-500 uppercase tracking-widest text-sm font-bold mt-2">Projects Done</p>
-            </div>
-            <div>
-              <h3 className="font-heading text-5xl md:text-7xl">10K</h3>
-              <p className="text-zinc-500 uppercase tracking-widest text-sm font-bold mt-2">Tons of Steel</p>
-            </div>
-            <div>
-              <h3 className="font-heading text-5xl md:text-7xl">100%</h3>
-              <p className="text-zinc-500 uppercase tracking-widest text-sm font-bold mt-2">Safety Record</p>
-            </div>
+            {t.stats.map((s, i) => (
+              <div key={i}>
+                <h3 className={`font-heading text-5xl md:text-7xl ${i === 0 ? 'text-[#ff5a00]' : ''}`}>{s.value}</h3>
+                <p className="text-zinc-500 uppercase tracking-widest text-sm font-bold mt-2">{s.label}</p>
+              </div>
+            ))}
           </div>
 
           <div className="pt-24 grid md:grid-cols-2 gap-16 items-center">
             <div>
-              <h2 className="font-heading text-5xl md:text-7xl mb-6">NOT JUST CONTRACTORS.<br/>WE ARE BUILDERS OF LEGACIES.</h2>
+              <h2 className="font-heading text-5xl md:text-6xl mb-6 leading-tight" style={{ whiteSpace: 'pre-line' }}>{t.about.title}</h2>
               <div className="w-24 h-2 bg-[#ff5a00] mb-8" />
             </div>
             <div>
-              <p className="text-zinc-400 text-lg leading-relaxed mb-6">
-                At Tanger AJ, we don't just pour concrete and weld steel. We forge the foundations of modern industry. Our approach combines raw industrial power with meticulous engineering precision.
-              </p>
-              <p className="text-zinc-400 text-lg leading-relaxed mb-8">
-                From towering commercial complexes to heavy industrial facilities, our teams execute with ruthless efficiency and an unwavering commitment to structural integrity. When deadlines are non-negotiable, clients call us.
-              </p>
-              <a href="#about" className="inline-flex items-center gap-2 text-[#ff5a00] font-bold uppercase tracking-wider hover:text-white transition-colors group">
-                Read our full story <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              <p className="text-zinc-400 text-lg leading-relaxed mb-6">{t.about.p1}</p>
+              <p className="text-zinc-400 text-lg leading-relaxed mb-8">{t.about.p2}</p>
+              <a href="#" className="inline-flex items-center gap-2 text-[#ff5a00] font-bold uppercase tracking-wider hover:text-white transition-colors group">
+                {t.about.link} <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </a>
             </div>
           </div>
         </div>
       </section>
 
-      {/* SERVICES SECTION */}
+      {/* ── SERVICES ── */}
       <section id="services" className="py-32 bg-[#121212] relative clip-diagonal-bottom">
         <div className="container mx-auto px-6 md:px-12">
           <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
             <div className="max-w-2xl">
               <div className="flex items-center gap-4 mb-4">
                 <div className="w-8 h-1 bg-[#ff5a00]" />
-                <p className="uppercase tracking-[0.2em] text-[#ff5a00] font-bold text-sm">Our Capabilities</p>
+                <p className="uppercase tracking-[0.2em] text-[#ff5a00] font-bold text-sm">{t.services.eyebrow}</p>
               </div>
-              <h2 className="font-heading text-6xl md:text-8xl">IRONCLAD EXPERTISE</h2>
+              <h2 className="font-heading text-6xl md:text-8xl">{t.services.title}</h2>
             </div>
-            <p className="text-zinc-400 max-w-sm mb-4">
-              Comprehensive construction solutions scaled for ambition. We self-perform critical path scopes to control schedule and quality.
-            </p>
+            <p className="text-zinc-400 max-w-sm mb-4">{t.services.sub}</p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              { title: "General Contracting", icon: Building2, desc: "End-to-end project execution with strict timeline adherence and budget control. We manage every phase from ground-breaking to handover." },
-              { title: "Structural Engineering", icon: Ruler, desc: "Complex structural solutions utilizing advanced steel framing and reinforced concrete for maximum durability and load capacity." },
-              { title: "Commercial Build", icon: Truck, desc: "Large-scale commercial developments including high-rises, retail complexes, and corporate headquarters built for the future." },
-              { title: "Heavy Industrial", icon: HardHat, desc: "Specialized construction for manufacturing plants, warehouses, and industrial facilities requiring rigorous safety and technical standards." },
-              { title: "Renovation", icon: Hammer, desc: "Structural modifications and complete overhauls of existing infrastructure, transforming outdated spaces into modern assets." },
-              { title: "Project Management", icon: ShieldCheck, desc: "Comprehensive oversight, risk mitigation, and proactive problem-solving to keep massive undertakings on track." }
-            ].map((service, i) => (
+            {t.services.items.map((service, i) => (
               <div key={i} className="group bg-[#0a0a0a] border border-zinc-800 p-10 hover:border-[#ff5a00] transition-colors reveal-hover cursor-pointer relative overflow-hidden">
-                <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity transform translate-x-4 -translate-y-4 group-hover:translate-x-0 group-hover:-translate-y-0 duration-500">
+                <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity">
                   <service.icon className="w-32 h-32 text-white" />
                 </div>
-                
                 <service.icon className="w-12 h-12 text-[#ff5a00] mb-8 relative z-10" />
                 <h3 className="font-heading text-3xl mb-4 relative z-10 group-hover:text-[#ff5a00] transition-colors">{service.title}</h3>
                 <div className="w-12 h-0.5 bg-zinc-800 group-hover:bg-[#ff5a00] transition-colors mb-4 relative z-10" />
-                
                 <div className="reveal-content relative z-10">
-                  <p className="text-zinc-400 leading-relaxed text-sm">
-                    {service.desc}
-                  </p>
+                  <p className="text-zinc-400 leading-relaxed text-sm">{service.desc}</p>
                 </div>
               </div>
             ))}
@@ -207,63 +389,58 @@ export function LandingPage() {
         </div>
       </section>
 
-      {/* FEATURED PROJECTS */}
+      {/* ── PROJECTS ── */}
       <section id="projects" className="py-32 bg-[#0a0a0a]">
         <div className="container mx-auto px-6 md:px-12">
-          <div className="mb-24 flex items-center justify-between">
-             <h2 className="font-heading text-6xl md:text-9xl text-stroke opacity-30 select-none hidden md:block absolute right-0 translate-x-1/4">PROVEN RESULTS</h2>
-             <div>
-               <div className="flex items-center gap-4 mb-4">
-                  <div className="w-8 h-1 bg-[#ff5a00]" />
-                  <p className="uppercase tracking-[0.2em] text-[#ff5a00] font-bold text-sm">Showcase</p>
-                </div>
-                <h2 className="font-heading text-6xl md:text-8xl relative z-10">BUILT TO LAST</h2>
-             </div>
+          <div className="mb-24 relative">
+            <div className="flex items-center gap-4 mb-4">
+              <div className="w-8 h-1 bg-[#ff5a00]" />
+              <p className="uppercase tracking-[0.2em] text-[#ff5a00] font-bold text-sm">{t.projects.eyebrow}</p>
+            </div>
+            <h2 className="font-heading text-5xl md:text-7xl relative z-10">{t.projects.title}</h2>
           </div>
 
+          {/* Project 1 */}
           <div className="grid md:grid-cols-12 gap-12 md:gap-8 items-center mb-32">
             <div className="md:col-span-7 relative group">
               <div className="absolute inset-0 bg-[#ff5a00] translate-x-4 translate-y-4 transition-transform group-hover:translate-x-6 group-hover:translate-y-6" />
-              <img 
-                src="/__mockup/images/tanger-aj-project1.jpg" 
-                alt="Concrete and steel structural framework" 
+              <img
+                src="/__mockup/images/tanger-aj-project1.jpg"
+                alt="Rénovation résidentielle"
                 className="relative z-10 w-full aspect-[4/3] object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
               />
             </div>
             <div className="md:col-span-4 md:col-start-9 md:pl-8">
-              <p className="text-[#ff5a00] font-bold tracking-widest text-sm mb-2">01 — INDUSTRIAL</p>
-              <h3 className="font-heading text-4xl md:text-5xl mb-6">NEXUS HEAVY FOUNDRY</h3>
-              <p className="text-zinc-400 mb-8 leading-relaxed">
-                A massive 200,000 sq ft industrial facility requiring deep foundation work and specialized heavy steel framework to support massive overhead cranes. Completed 3 weeks ahead of schedule.
-              </p>
+              <p className="text-[#ff5a00] font-bold tracking-widest text-sm mb-2">{t.projects.proj1.tag}</p>
+              <h3 className="font-heading text-4xl md:text-5xl mb-6">{t.projects.proj1.title}</h3>
+              <p className="text-zinc-400 mb-8 leading-relaxed">{t.projects.proj1.desc}</p>
               <ul className="space-y-4 mb-8 text-sm font-bold text-zinc-300">
-                <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-[#ff5a00]" /> 4,500 Tons of Steel</li>
-                <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-[#ff5a00]" /> 18 Month Timeline</li>
-                <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-[#ff5a00]" /> Zero Safety Incidents</li>
+                {t.projects.proj1.items.map((item, i) => (
+                  <li key={i} className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-[#ff5a00]" />{item}</li>
+                ))}
               </ul>
-              <a href="#" className="uppercase tracking-widest text-sm font-bold border-b border-[#ff5a00] pb-1 hover:text-[#ff5a00] transition-colors">View Project Details</a>
+              <a href="#" className="uppercase tracking-widest text-sm font-bold border-b border-[#ff5a00] pb-1 hover:text-[#ff5a00] transition-colors">{t.projects.cta}</a>
             </div>
           </div>
 
+          {/* Project 2 */}
           <div className="grid md:grid-cols-12 gap-12 md:gap-8 items-center">
-            <div className="md:col-span-4 md:pl-8 order-2 md:order-1 text-right md:text-left">
-              <p className="text-[#ff5a00] font-bold tracking-widest text-sm mb-2">02 — COMMERCIAL</p>
-              <h3 className="font-heading text-4xl md:text-5xl mb-6">ECLIPSE TOWER</h3>
-              <p className="text-zinc-400 mb-8 leading-relaxed">
-                A 42-story commercial skyscraper featuring an innovative geometric glass facade and a central concrete core. This project redefined the city skyline and set new standards for energy efficiency.
-              </p>
-              <ul className="space-y-4 mb-8 text-sm font-bold text-zinc-300 flex flex-col md:items-start items-end">
-                <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-[#ff5a00]" /> 42 Stories</li>
-                <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-[#ff5a00]" /> LEED Platinum Certified</li>
-                <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-[#ff5a00]" /> Phased Delivery</li>
+            <div className="md:col-span-4 order-2 md:order-1">
+              <p className="text-[#ff5a00] font-bold tracking-widest text-sm mb-2">{t.projects.proj2.tag}</p>
+              <h3 className="font-heading text-4xl md:text-5xl mb-6">{t.projects.proj2.title}</h3>
+              <p className="text-zinc-400 mb-8 leading-relaxed">{t.projects.proj2.desc}</p>
+              <ul className="space-y-4 mb-8 text-sm font-bold text-zinc-300">
+                {t.projects.proj2.items.map((item, i) => (
+                  <li key={i} className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-[#ff5a00]" />{item}</li>
+                ))}
               </ul>
-              <a href="#" className="uppercase tracking-widest text-sm font-bold border-b border-[#ff5a00] pb-1 hover:text-[#ff5a00] transition-colors">View Project Details</a>
+              <a href="#" className="uppercase tracking-widest text-sm font-bold border-b border-[#ff5a00] pb-1 hover:text-[#ff5a00] transition-colors">{t.projects.cta}</a>
             </div>
             <div className="md:col-span-7 md:col-start-6 relative group order-1 md:order-2">
               <div className="absolute inset-0 bg-zinc-800 -translate-x-4 translate-y-4 transition-transform group-hover:-translate-x-6 group-hover:translate-y-6" />
-              <img 
-                src="/__mockup/images/tanger-aj-project2.jpg" 
-                alt="Completed commercial skyscraper" 
+              <img
+                src="/__mockup/images/tanger-aj-project2.jpg"
+                alt="Construction résidentielle"
                 className="relative z-10 w-full aspect-[4/3] object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
               />
             </div>
@@ -271,25 +448,18 @@ export function LandingPage() {
         </div>
       </section>
 
-      {/* WHY CHOOSE US / EDGE */}
+      {/* ── ADVANTAGE ── */}
       <section className="py-32 bg-[#ff5a00] text-black">
         <div className="container mx-auto px-6 md:px-12">
           <div className="grid md:grid-cols-2 gap-16 items-center">
             <div>
-              <h2 className="font-heading text-6xl md:text-8xl leading-none mb-8">THE TANGER AJ<br/>ADVANTAGE</h2>
-              <p className="text-black/80 text-xl font-medium max-w-md">
-                We don't make excuses. We make progress. Our relentless focus on execution separates us from the competition.
-              </p>
+              <h2 className="font-heading text-6xl md:text-8xl leading-none mb-8" style={{ whiteSpace: 'pre-line' }}>{t.advantage.title}</h2>
+              <p className="text-black/80 text-xl font-medium max-w-md">{t.advantage.sub}</p>
             </div>
-            
             <div className="grid gap-8">
-              {[
-                { title: "UNCOMPROMISING SAFETY", desc: "Our sites are disciplined. We enforce the strictest safety protocols in the industry because protecting our team is paramount." },
-                { title: "DEADLINE OBSESSION", desc: "Time is money. We employ advanced scheduling algorithms and proactive supply chain management to never miss a handover date." },
-                { title: "ENGINEERING EXCELLENCE", desc: "We anticipate structural challenges before they happen. Our in-house engineering team works side-by-side with execution." }
-              ].map((item, i) => (
+              {t.advantage.items.map((item, i) => (
                 <div key={i} className="flex gap-6 border-b border-black/20 pb-8">
-                  <div className="font-heading text-4xl opacity-50">0{i+1}</div>
+                  <div className="font-heading text-4xl opacity-50 shrink-0">0{i + 1}</div>
                   <div>
                     <h4 className="font-heading text-2xl mb-2">{item.title}</h4>
                     <p className="text-black/70 font-medium leading-relaxed">{item.desc}</p>
@@ -301,23 +471,18 @@ export function LandingPage() {
         </div>
       </section>
 
-      {/* CTA / CONTACT SECTION */}
+      {/* ── CONTACT ── */}
       <section id="contact" className="py-32 bg-[#121212] relative overflow-hidden">
         <div className="absolute top-0 right-0 w-1/2 h-full bg-[#0a0a0a] clip-diagonal hidden lg:block z-0" />
-        
         <div className="container mx-auto px-6 md:px-12 relative z-10">
           <div className="grid lg:grid-cols-2 gap-16">
-            
-            {/* Contact Info */}
             <div className="pr-0 lg:pr-12">
               <div className="flex items-center gap-4 mb-4">
                 <div className="w-8 h-1 bg-[#ff5a00]" />
-                <p className="uppercase tracking-[0.2em] text-[#ff5a00] font-bold text-sm">Ready to Build?</p>
+                <p className="uppercase tracking-[0.2em] text-[#ff5a00] font-bold text-sm">{t.contact.eyebrow}</p>
               </div>
-              <h2 className="font-heading text-6xl md:text-8xl mb-8">LET'S BREAK<br/>GROUND.</h2>
-              <p className="text-zinc-400 text-lg mb-12">
-                Have a project that requires serious capability? Reach out to our project estimation team. We're ready to review your blueprints and provide a comprehensive proposal.
-              </p>
+              <h2 className="font-heading text-5xl md:text-7xl mb-8 leading-tight" style={{ whiteSpace: 'pre-line' }}>{t.contact.title}</h2>
+              <p className="text-zinc-400 text-lg mb-12">{t.contact.sub}</p>
 
               <div className="space-y-8">
                 <div className="flex items-start gap-4">
@@ -325,89 +490,74 @@ export function LandingPage() {
                     <Phone className="w-5 h-5 text-[#ff5a00]" />
                   </div>
                   <div>
-                    <p className="text-zinc-500 uppercase tracking-widest text-xs font-bold mb-1">Direct Line</p>
-                    <p className="text-2xl font-heading tracking-wider">+1 (555) 123-4567</p>
+                    <p className="text-zinc-500 uppercase tracking-widest text-xs font-bold mb-1">{t.contact.phone}</p>
+                    <p className="text-2xl font-heading tracking-wider">+33 1 23 45 67 89</p>
                   </div>
                 </div>
-                
                 <div className="flex items-start gap-4">
                   <div className="w-12 h-12 bg-zinc-900 border border-zinc-800 flex items-center justify-center shrink-0">
                     <Mail className="w-5 h-5 text-[#ff5a00]" />
                   </div>
                   <div>
-                    <p className="text-zinc-500 uppercase tracking-widest text-xs font-bold mb-1">Email Estimation</p>
-                    <p className="text-lg font-medium">info@tangeraj.com</p>
+                    <p className="text-zinc-500 uppercase tracking-widest text-xs font-bold mb-1">{t.contact.email}</p>
+                    <p className="text-lg font-medium">contact@tangeraj-construction.fr</p>
                   </div>
                 </div>
-
                 <div className="flex items-start gap-4">
                   <div className="w-12 h-12 bg-zinc-900 border border-zinc-800 flex items-center justify-center shrink-0">
                     <MapPin className="w-5 h-5 text-[#ff5a00]" />
                   </div>
                   <div>
-                    <p className="text-zinc-500 uppercase tracking-widest text-xs font-bold mb-1">Headquarters</p>
-                    <p className="text-lg font-medium text-zinc-300">
-                      700 Industrial Blvd, Suite 400<br/>
-                      Metro Steel District, NY 10001
-                    </p>
+                    <p className="text-zinc-500 uppercase tracking-widest text-xs font-bold mb-1">{t.contact.address}</p>
+                    <p className="text-lg font-medium text-zinc-300" style={{ whiteSpace: 'pre-line' }}>{t.contact.addressValue}</p>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Form */}
-            <div className="bg-[#0a0a0a] border border-zinc-800 p-8 md:p-12 lg:-mr-12 relative z-10 shadow-2xl">
-              <h3 className="font-heading text-3xl mb-8">REQUEST A CONSULTATION</h3>
-              
+            <div className="bg-[#0a0a0a] border border-zinc-800 p-8 md:p-12 relative z-10 shadow-2xl">
+              <h3 className="font-heading text-3xl mb-8">{t.contact.form.title}</h3>
               <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <label className="text-xs uppercase tracking-widest font-bold text-zinc-500">First Name</label>
-                    <input type="text" className="w-full bg-zinc-900 border border-zinc-800 p-4 text-white focus:outline-none focus:border-[#ff5a00] transition-colors" placeholder="John" />
+                    <label className="text-xs uppercase tracking-widest font-bold text-zinc-500">{t.contact.form.firstName}</label>
+                    <input type="text" className="w-full bg-zinc-900 border border-zinc-800 p-4 text-white focus:outline-none focus:border-[#ff5a00] transition-colors" />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-xs uppercase tracking-widest font-bold text-zinc-500">Last Name</label>
-                    <input type="text" className="w-full bg-zinc-900 border border-zinc-800 p-4 text-white focus:outline-none focus:border-[#ff5a00] transition-colors" placeholder="Doe" />
+                    <label className="text-xs uppercase tracking-widest font-bold text-zinc-500">{t.contact.form.lastName}</label>
+                    <input type="text" className="w-full bg-zinc-900 border border-zinc-800 p-4 text-white focus:outline-none focus:border-[#ff5a00] transition-colors" />
                   </div>
                 </div>
-                
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <label className="text-xs uppercase tracking-widest font-bold text-zinc-500">Email Address</label>
-                    <input type="email" className="w-full bg-zinc-900 border border-zinc-800 p-4 text-white focus:outline-none focus:border-[#ff5a00] transition-colors" placeholder="john@company.com" />
+                    <label className="text-xs uppercase tracking-widest font-bold text-zinc-500">{t.contact.form.emailLabel}</label>
+                    <input type="email" className="w-full bg-zinc-900 border border-zinc-800 p-4 text-white focus:outline-none focus:border-[#ff5a00] transition-colors" />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-xs uppercase tracking-widest font-bold text-zinc-500">Phone Number</label>
-                    <input type="tel" className="w-full bg-zinc-900 border border-zinc-800 p-4 text-white focus:outline-none focus:border-[#ff5a00] transition-colors" placeholder="(555) 000-0000" />
+                    <label className="text-xs uppercase tracking-widest font-bold text-zinc-500">{t.contact.form.phoneLabel}</label>
+                    <input type="tel" className="w-full bg-zinc-900 border border-zinc-800 p-4 text-white focus:outline-none focus:border-[#ff5a00] transition-colors" />
                   </div>
                 </div>
-
                 <div className="space-y-2">
-                  <label className="text-xs uppercase tracking-widest font-bold text-zinc-500">Project Type</label>
+                  <label className="text-xs uppercase tracking-widest font-bold text-zinc-500">{t.contact.form.projectType}</label>
                   <select className="w-full bg-zinc-900 border border-zinc-800 p-4 text-white focus:outline-none focus:border-[#ff5a00] transition-colors appearance-none">
-                    <option>Commercial Development</option>
-                    <option>Industrial Facility</option>
-                    <option>Structural Renovation</option>
-                    <option>General Contracting</option>
+                    {t.contact.form.projectTypes.map((pt, i) => <option key={i}>{pt}</option>)}
                   </select>
                 </div>
-
                 <div className="space-y-2">
-                  <label className="text-xs uppercase tracking-widest font-bold text-zinc-500">Project Details</label>
-                  <textarea rows={4} className="w-full bg-zinc-900 border border-zinc-800 p-4 text-white focus:outline-none focus:border-[#ff5a00] transition-colors resize-none" placeholder="Tell us about scale, timeline, and location..."></textarea>
+                  <label className="text-xs uppercase tracking-widest font-bold text-zinc-500">{t.contact.form.details}</label>
+                  <textarea rows={4} className="w-full bg-zinc-900 border border-zinc-800 p-4 text-white focus:outline-none focus:border-[#ff5a00] transition-colors resize-none" placeholder={t.contact.form.detailsPlaceholder}></textarea>
                 </div>
-
                 <button type="submit" className="w-full bg-[#ff5a00] text-white p-4 font-bold uppercase tracking-wider hover:bg-orange-600 transition-colors flex justify-center items-center gap-2">
-                  Submit Request <ChevronRight className="w-5 h-5" />
+                  {t.contact.form.submit} <ChevronRight className="w-5 h-5" />
                 </button>
               </form>
             </div>
-
           </div>
         </div>
       </section>
 
-      {/* FOOTER */}
+      {/* ── FOOTER ── */}
       <footer className="bg-black py-16 border-t border-zinc-900">
         <div className="container mx-auto px-6 md:px-12">
           <div className="grid md:grid-cols-4 gap-12 mb-16">
@@ -416,47 +566,39 @@ export function LandingPage() {
                 <div className="w-8 h-8 bg-[#ff5a00] flex items-center justify-center">
                   <Building2 className="w-5 h-5 text-white" />
                 </div>
-                <span className="font-heading text-3xl tracking-wider pt-1">TANGER AJ</span>
+                <span className="font-heading text-3xl tracking-wider pt-1">TANGER AJ CONSTRUCTION</span>
               </div>
-              <p className="text-zinc-500 max-w-sm mb-8">
-                Uncompromising construction and structural engineering for those who build the future. 
-              </p>
+              <p className="text-zinc-500 max-w-sm mb-8">{t.footer.tagline}</p>
               <div className="flex gap-4">
-                <div className="w-10 h-10 bg-zinc-900 border border-zinc-800 flex items-center justify-center hover:bg-[#ff5a00] hover:border-[#ff5a00] transition-colors cursor-pointer">
-                  <span className="font-bold text-sm">IN</span>
-                </div>
-                <div className="w-10 h-10 bg-zinc-900 border border-zinc-800 flex items-center justify-center hover:bg-[#ff5a00] hover:border-[#ff5a00] transition-colors cursor-pointer">
-                  <span className="font-bold text-sm">X</span>
-                </div>
+                {['IN', 'FB', 'X'].map((s) => (
+                  <div key={s} className="w-10 h-10 bg-zinc-900 border border-zinc-800 flex items-center justify-center hover:bg-[#ff5a00] hover:border-[#ff5a00] transition-colors cursor-pointer">
+                    <span className="font-bold text-xs">{s}</span>
+                  </div>
+                ))}
               </div>
             </div>
-            
             <div>
-              <h4 className="font-heading text-xl mb-6">SERVICES</h4>
+              <h4 className="font-heading text-xl mb-6">{t.footer.services}</h4>
               <ul className="space-y-4 text-zinc-400 font-medium text-sm">
-                <li><a href="#" className="hover:text-[#ff5a00] transition-colors">General Contracting</a></li>
-                <li><a href="#" className="hover:text-[#ff5a00] transition-colors">Structural Engineering</a></li>
-                <li><a href="#" className="hover:text-[#ff5a00] transition-colors">Commercial Build</a></li>
-                <li><a href="#" className="hover:text-[#ff5a00] transition-colors">Heavy Industrial</a></li>
+                {t.footer.serviceLinks.map((s, i) => (
+                  <li key={i}><a href="#services" className="hover:text-[#ff5a00] transition-colors">{s}</a></li>
+                ))}
               </ul>
             </div>
-
             <div>
-              <h4 className="font-heading text-xl mb-6">COMPANY</h4>
+              <h4 className="font-heading text-xl mb-6">{t.footer.company}</h4>
               <ul className="space-y-4 text-zinc-400 font-medium text-sm">
-                <li><a href="#about" className="hover:text-[#ff5a00] transition-colors">About Us</a></li>
-                <li><a href="#projects" className="hover:text-[#ff5a00] transition-colors">Our Projects</a></li>
-                <li><a href="#" className="hover:text-[#ff5a00] transition-colors">Careers</a></li>
-                <li><a href="#contact" className="hover:text-[#ff5a00] transition-colors">Contact</a></li>
+                {t.footer.companyLinks.map((l, i) => (
+                  <li key={i}><a href={l.href} className="hover:text-[#ff5a00] transition-colors">{l.label}</a></li>
+                ))}
               </ul>
             </div>
           </div>
-          
           <div className="border-t border-zinc-900 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-zinc-600 font-bold">
-            <p>&copy; {new Date().getFullYear()} TANGER AJ CONSTRUCTION. ALL RIGHTS RESERVED.</p>
+            <p>&copy; {new Date().getFullYear()} TANGER AJ CONSTRUCTION. {t.footer.legal}</p>
             <div className="flex gap-6">
-              <a href="#" className="hover:text-white transition-colors">PRIVACY POLICY</a>
-              <a href="#" className="hover:text-white transition-colors">TERMS OF SERVICE</a>
+              <a href="#" className="hover:text-white transition-colors">{t.footer.privacy}</a>
+              <a href="#" className="hover:text-white transition-colors">{t.footer.terms}</a>
             </div>
           </div>
         </div>
