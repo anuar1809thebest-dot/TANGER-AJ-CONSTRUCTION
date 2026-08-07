@@ -17,10 +17,10 @@ const translations = {
       quote: 'Demander un devis',
     },
     hero: {
-      tagline: 'Construction · Rénovation · Restauration',
+      tagline: 'Construction · Rénovation · Finitions · Patrimoine',
       headline1: 'NOUS BÂTISSONS',
       headline2: 'VOTRE AVENIR.',
-      sub: 'Expertise, rigueur et passion au service de vos projets de construction, rénovation et restauration partout en France.',
+      sub: 'Du gros œuvre aux finitions, notre équipe réalise vos projets de construction, rénovation, restauration et aménagement partout en France.',
       cta1: 'Voir nos réalisations',
       cta2: 'Nous contacter',
       scroll: 'Défiler',
@@ -34,7 +34,7 @@ const translations = {
     about: {
       title: 'PLUS QUE DES BÂTISSEURS.\nNOUS CRÉONS DES LIEUX DE VIE.',
       p1: "Chez Tanger AJ Construction, nous mettons notre savoir-faire au service de vos ambitions. Chaque chantier est une promesse tenue — dans les délais, dans le budget, avec le soin du détail qui fait la différence.",
-      p2: "De la maison individuelle à la restauration de bâtiments historiques, en passant par la rénovation complète d'appartements ou la construction de bâtiments commerciaux, notre équipe apporte la même exigence sur chaque projet.",
+      p2: "Maçonnerie, plaques de plâtre, enduits, peinture, carrelage, isolation ou restauration du patrimoine : nous réunissons tous les savoir-faire nécessaires pour donner vie à des projets durables et soignés.",
       link: 'Notre histoire',
     },
     services: {
@@ -43,10 +43,10 @@ const translations = {
       sub: 'Des solutions globales pour chaque étape de votre projet, du premier coup de crayon à la remise des clés.',
       items: [
         { title: 'Construction neuve', icon: Building2, desc: "Maisons individuelles, immeubles résidentiels, locaux commerciaux — nous accompagnons la construction de A à Z avec une maîtrise d'œuvre rigoureuse et transparente." },
-        { title: 'Rénovation complète', icon: Wrench, desc: "Transformation complète d'appartements, maisons et locaux professionnels. Électricité, plomberie, isolation, cloisons, finitions — tout sous un même toit." },
-        { title: 'Restauration', icon: RefreshCw, desc: "Restauration de bâtiments anciens, monuments et façades classées. Respect des matériaux d'origine et des techniques traditionnelles, certifiés patrimoine." },
+        { title: 'Rénovation complète', icon: Wrench, desc: "Transformation complète d'appartements, maisons et locaux professionnels : isolation, plaques de plâtre, cloisons, enduits, peinture et finitions — tout sous un même toit." },
+        { title: 'Restauration du patrimoine', icon: RefreshCw, desc: "Restauration de bâtiments anciens, façades et éléments patrimoniaux. Nous respectons les matériaux d'origine et les techniques traditionnelles." },
         { title: 'Construction de logements', icon: Home, desc: "Programmes de logements collectifs et résidences privées. Nous gérons chaque lot avec la précision d'un chef d'orchestre, du gros œuvre aux finitions." },
-        { title: 'Aménagement intérieur', icon: Paintbrush, desc: "Cuisine, salle de bain, parquet, carrelage, peinture — nos artisans qualifiés subliment chaque espace avec des matériaux soigneusement sélectionnés." },
+        { title: 'Finitions & aménagement', icon: Paintbrush, desc: "Enduit, peinture, carrelage, faïence, parquet, cuisine et salle de bain : nos artisans soignent chaque détail avec des matériaux sélectionnés." },
         { title: 'Gestion de projet', icon: ShieldCheck, desc: "Pilotage complet du chantier : coordination des corps de métier, gestion administrative, suivi budgétaire et reporting régulier. Vous restez serein." },
       ],
     },
@@ -54,16 +54,16 @@ const translations = {
       eyebrow: 'Réalisations',
       title: 'NOS TRAVAUX PARLENT POUR NOUS',
       proj1: {
-        tag: '01 — RÉNOVATION RÉSIDENTIELLE',
-        title: 'VILLA BELLE ÉPOQUE',
-        desc: "Rénovation complète d'une villa des années 1920 à Lyon : mise aux normes électriques, isolation thermique, restauration des moulures d'origine et création d'une extension contemporaine.",
-        items: ['480 m² rénovés', 'Durée : 8 mois', 'Livraison avant délai'],
+        tag: '01 — RÉNOVATION INTÉRIEURE',
+        title: 'APPARTEMENT HAUSSMANNIEN',
+        desc: "Rénovation complète d'un appartement à Lyon : préparation des supports, plaques de plâtre, enduits, pose de carrelage et finitions peinture pour un intérieur lumineux et durable.",
+        items: ['180 m² rénovés', 'Carrelage & faïence', 'Finitions sur mesure'],
       },
       proj2: {
-        tag: '02 — CONSTRUCTION NEUVE',
-        title: 'RÉSIDENCE LES ÉRABLES',
-        desc: "Programme de 24 logements BBC en région parisienne. Conception bioclimatique, matériaux locaux, espaces communs soignés et livraison clé en main pour chaque acquéreur.",
-        items: ['24 logements', 'Certification BBC', 'Zéro défaut à la réception'],
+        tag: '02 — RESTAURATION DU PATRIMOINE',
+        title: 'FAÇADE DU VIEUX VILLAGE',
+        desc: "Restauration d'une façade ancienne dans un village français : reprise de maçonnerie, enduit à la chaux, peinture des menuiseries et conservation des détails d'origine.",
+        items: ['Façade restaurée', 'Enduit traditionnel à la chaux', 'Détails patrimoniaux préservés'],
       },
       cta: 'Voir le détail du projet',
     },
@@ -122,10 +122,10 @@ const translations = {
       quote: 'Get a Quote',
     },
     hero: {
-      tagline: 'Construction · Renovation · Restoration',
+      tagline: 'Construction · Renovation · Finishes · Heritage',
       headline1: 'WE BUILD',
       headline2: 'YOUR FUTURE.',
-      sub: 'Expertise, precision and passion driving your construction, renovation and restoration projects across France.',
+      sub: 'From structural work to final finishes, our team delivers construction, renovation, restoration and fit-out projects across France.',
       cta1: 'View Our Work',
       cta2: 'Contact Us',
       scroll: 'Scroll',
@@ -139,7 +139,7 @@ const translations = {
     about: {
       title: 'MORE THAN BUILDERS.\nWE CREATE PLACES TO LIVE.',
       p1: "At Tanger AJ Construction, we put our expertise at the service of your ambitions. Every project is a promise kept — on time, on budget, with the attention to detail that makes the difference.",
-      p2: "From individual homes to the restoration of historic buildings, through full apartment renovations or commercial construction, our team brings the same high standards to every project.",
+      p2: "Masonry, plasterboard, render, painting, tiling, insulation or heritage restoration: we bring together every skill needed to create lasting, beautifully finished spaces.",
       link: 'Our story',
     },
     services: {
@@ -148,10 +148,10 @@ const translations = {
       sub: 'Comprehensive solutions for every stage of your project, from first sketch to key handover.',
       items: [
         { title: 'New Construction', icon: Building2, desc: "Individual homes, residential buildings, commercial premises — we manage construction from A to Z with rigorous and transparent project management." },
-        { title: 'Full Renovation', icon: Wrench, desc: "Complete transformation of apartments, houses and professional premises. Electrical, plumbing, insulation, partitions, finishes — all under one roof." },
-        { title: 'Restoration', icon: RefreshCw, desc: "Restoration of old buildings, monuments and listed facades. Respect for original materials and traditional techniques, heritage certified." },
+        { title: 'Full Renovation', icon: Wrench, desc: "Complete transformation of apartments, houses and professional premises: insulation, plasterboard, partitions, render, painting and finishes — all under one roof." },
+        { title: 'Heritage Restoration', icon: RefreshCw, desc: "Restoration of old buildings, facades and heritage details. We respect original materials and traditional techniques." },
         { title: 'Residential Housing', icon: Home, desc: "Collective housing programmes and private residences. We manage every lot with precision, from structural work to finishes." },
-        { title: 'Interior Design', icon: Paintbrush, desc: "Kitchen, bathroom, flooring, tiling, painting — our skilled craftsmen enhance every space with carefully selected materials." },
+        { title: 'Finishes & Fit-out', icon: Paintbrush, desc: "Render, painting, tiling, wall tiles, flooring, kitchens and bathrooms — our craftsmen care for every detail with selected materials." },
         { title: 'Project Management', icon: ShieldCheck, desc: "Complete site management: coordination of trades, administrative management, budget tracking and regular reporting. You stay stress-free." },
       ],
     },
@@ -159,16 +159,16 @@ const translations = {
       eyebrow: 'Projects',
       title: 'OUR WORK SPEAKS FOR ITSELF',
       proj1: {
-        tag: '01 — RESIDENTIAL RENOVATION',
-        title: 'VILLA BELLE ÉPOQUE',
-        desc: "Complete renovation of a 1920s villa in Lyon: electrical upgrades, thermal insulation, restoration of original mouldings and creation of a contemporary extension.",
-        items: ['480 m² renovated', 'Duration: 8 months', 'Delivered ahead of schedule'],
+        tag: '01 — INTERIOR RENOVATION',
+        title: 'HAUSSMANNIAN APARTMENT',
+        desc: "Complete renovation of an apartment in Lyon: surface preparation, plasterboard, skim coating, tiling and paint finishes for a bright, lasting interior.",
+        items: ['180 m² renovated', 'Tiling & wall tiles', 'Custom finishes'],
       },
       proj2: {
-        tag: '02 — NEW CONSTRUCTION',
-        title: 'LES ÉRABLES RESIDENCE',
-        desc: "Programme of 24 low-energy homes in the Paris region. Bioclimatic design, local materials, carefully designed communal areas and turnkey delivery for each buyer.",
-        items: ['24 units', 'BBC Certification', 'Zero defects at handover'],
+        tag: '02 — HERITAGE RESTORATION',
+        title: 'OLD VILLAGE FACADE',
+        desc: "Restoration of an old facade in a French village: masonry repairs, traditional lime render, painted joinery and preservation of original details.",
+        items: ['Facade restored', 'Traditional lime render', 'Heritage details preserved'],
       },
       cta: 'View Project Details',
     },
@@ -293,8 +293,8 @@ export function LandingPage() {
           <div className="absolute inset-0 bg-gradient-to-r from-black/92 via-black/65 to-black/30 z-10" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent z-10" />
           <img
-            src="/__mockup/images/tanger-aj-hero.jpg"
-            alt="Chantier de construction"
+            src="/__mockup/images/tanger-aj-hero_2.jpg"
+            alt="Chantier de construction d'une maison"
             className="w-full h-full object-cover object-center"
           />
         </div>
@@ -405,8 +405,8 @@ export function LandingPage() {
             <div className="md:col-span-7 relative group">
               <div className="absolute inset-0 bg-[#ff5a00] translate-x-4 translate-y-4 transition-transform group-hover:translate-x-6 group-hover:translate-y-6" />
               <img
-                src="/__mockup/images/tanger-aj-project1.jpg"
-                alt="Rénovation résidentielle"
+                src="/__mockup/images/tanger-aj-project1_2.jpg"
+                alt="Rénovation intérieure avec pose de carrelage"
                 className="relative z-10 w-full aspect-[4/3] object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
               />
             </div>
@@ -439,8 +439,8 @@ export function LandingPage() {
             <div className="md:col-span-7 md:col-start-6 relative group order-1 md:order-2">
               <div className="absolute inset-0 bg-zinc-800 -translate-x-4 translate-y-4 transition-transform group-hover:-translate-x-6 group-hover:translate-y-6" />
               <img
-                src="/__mockup/images/tanger-aj-project2.jpg"
-                alt="Construction résidentielle"
+                src="/__mockup/images/tanger-aj-project2_2.jpg"
+                alt="Restauration d'une façade de patrimoine"
                 className="relative z-10 w-full aspect-[4/3] object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
               />
             </div>
