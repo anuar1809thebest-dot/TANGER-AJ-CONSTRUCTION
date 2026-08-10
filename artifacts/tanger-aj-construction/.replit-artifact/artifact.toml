@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "TANGER AJ CONSTRUCTION"
+description = "Public-facing frontend for TANGER AJ CONSTRUCTION's existing construction, renovation and heritage restoration website."
+version = "1.0.0"
+id = "artifacts/tanger-aj-construction"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 18928
+
+[services.development]
+run = "pnpm --filter @workspace/tanger-aj-construction run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/tanger-aj-construction", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/tanger-aj-construction/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "18928"
+BASE_PATH = "/"
