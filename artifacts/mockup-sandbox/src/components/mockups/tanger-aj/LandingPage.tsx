@@ -35,7 +35,6 @@ const translations = {
       title: 'PLUS QUE DES BÂTISSEURS.\nNOUS CRÉONS DES LIEUX DE VIE.',
       p1: "Chez Tanger AJ Construction, nous mettons notre savoir-faire au service de vos ambitions. Chaque chantier est une promesse tenue — dans les délais, dans le budget, avec le soin du détail qui fait la différence.",
       p2: "Maçonnerie, plaques de plâtre, enduits, peinture, carrelage, isolation ou restauration du patrimoine : nous réunissons tous les savoir-faire nécessaires pour donner vie à des projets durables et soignés.",
-      link: 'Notre histoire',
     },
     services: {
       eyebrow: 'Nos expertises',
@@ -140,7 +139,6 @@ const translations = {
       title: 'MORE THAN BUILDERS.\nWE CREATE PLACES TO LIVE.',
       p1: "At Tanger AJ Construction, we put our expertise at the service of your ambitions. Every project is a promise kept — on time, on budget, with the attention to detail that makes the difference.",
       p2: "Masonry, plasterboard, render, painting, tiling, insulation or heritage restoration: we bring together every skill needed to create lasting, beautifully finished spaces.",
-      link: 'Our story',
     },
     services: {
       eyebrow: 'Our Expertise',
@@ -346,9 +344,6 @@ export function LandingPage() {
             <div>
               <p className="text-zinc-400 text-lg leading-relaxed mb-6">{t.about.p1}</p>
               <p className="text-zinc-400 text-lg leading-relaxed mb-8">{t.about.p2}</p>
-              <a href="#" className="inline-flex items-center gap-2 text-[#ff5a00] font-bold uppercase tracking-wider hover:text-white transition-colors group">
-                {t.about.link} <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </a>
             </div>
           </div>
         </div>
