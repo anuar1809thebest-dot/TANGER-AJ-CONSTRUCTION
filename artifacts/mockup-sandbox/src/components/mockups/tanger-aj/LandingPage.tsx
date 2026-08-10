@@ -248,7 +248,6 @@ export function LandingPage() {
         .lang-btn:not(.active) { background: transparent; color: #71717a; }
         .lang-btn:not(.active):hover { color: white; }
       `}} />
-
       {/* ── NAV ── */}
       <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b ${scrolled ? 'bg-[#0a0a0a]/92 backdrop-blur-md border-white/10 py-3' : 'bg-transparent border-transparent py-5'}`}>
         <div className="container mx-auto px-6 md:px-12 flex justify-between items-center">
@@ -286,7 +285,6 @@ export function LandingPage() {
           </div>
         </div>
       </nav>
-
       {/* ── HERO ── */}
       <section className="relative min-h-[100dvh] flex items-center justify-center clip-diagonal bg-[#0a0a0a] pt-20">
         <div className="absolute inset-0 z-0">
@@ -328,7 +326,6 @@ export function LandingPage() {
           <ChevronDown className="w-5 h-5 text-zinc-500 animate-bounce" />
         </div>
       </section>
-
       {/* ── STATS & ABOUT ── */}
       <section id="about" className="py-24 bg-[#0a0a0a] relative z-10 -mt-20">
         <div className="container mx-auto px-6 md:px-12">
@@ -356,7 +353,6 @@ export function LandingPage() {
           </div>
         </div>
       </section>
-
       {/* ── SERVICES ── */}
       <section id="services" className="py-32 bg-[#121212] relative clip-diagonal-bottom">
         <div className="container mx-auto px-6 md:px-12">
@@ -388,7 +384,6 @@ export function LandingPage() {
           </div>
         </div>
       </section>
-
       {/* ── PROJECTS ── */}
       <section id="projects" className="py-32 bg-[#0a0a0a]">
         <div className="container mx-auto px-6 md:px-12">
@@ -447,7 +442,6 @@ export function LandingPage() {
           </div>
         </div>
       </section>
-
       {/* ── ADVANTAGE ── */}
       <section className="py-32 bg-[#ff5a00] text-black">
         <div className="container mx-auto px-6 md:px-12">
@@ -470,7 +464,6 @@ export function LandingPage() {
           </div>
         </div>
       </section>
-
       {/* ── CONTACT ── */}
       <section id="contact" className="py-32 bg-[#121212] relative overflow-hidden">
         <div className="absolute top-0 right-0 w-1/2 h-full bg-[#0a0a0a] clip-diagonal hidden lg:block z-0" />
@@ -491,7 +484,7 @@ export function LandingPage() {
                   </div>
                   <div>
                     <p className="text-zinc-500 uppercase tracking-widest text-xs font-bold mb-1">{t.contact.phone}</p>
-                    <p className="text-2xl font-heading tracking-wider">+33 1 23 45 67 89</p>
+                    <p className="text-2xl font-heading tracking-wider">+33 7 58 15 11 47</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
@@ -500,7 +493,7 @@ export function LandingPage() {
                   </div>
                   <div>
                     <p className="text-zinc-500 uppercase tracking-widest text-xs font-bold mb-1">{t.contact.email}</p>
-                    <p className="text-lg font-medium">contact@tangeraj-construction.fr</p>
+                    <p className="text-lg font-medium">construction.ajenoui@gmail.com</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
@@ -509,54 +502,148 @@ export function LandingPage() {
                   </div>
                   <div>
                     <p className="text-zinc-500 uppercase tracking-widest text-xs font-bold mb-1">{t.contact.address}</p>
-                    <p className="text-lg font-medium text-zinc-300" style={{ whiteSpace: 'pre-line' }}>{t.contact.addressValue}</p>
+                    <p className="text-lg font-medium text-zinc-300" style={{ whiteSpace: 'pre-line' }}>Rue Jacques Ressegaire{'\n'}13200 Arles, France</p>
                   </div>
                 </div>
               </div>
             </div>
-
             <div className="bg-[#0a0a0a] border border-zinc-800 p-8 md:p-12 relative z-10 shadow-2xl">
               <h3 className="font-heading text-3xl mb-8">{t.contact.form.title}</h3>
-              <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+
+              <form
+                className="space-y-6"
+                onSubmit={async (e) => {
+                  e.preventDefault();
+
+                  const form = e.currentTarget;
+                  const formData = new FormData(form);
+
+                  const data = {
+                    firstName: formData.get("firstName"),
+                    lastName: formData.get("lastName"),
+                    email: formData.get("email"),
+                    phone: formData.get("phone"),
+                    projectType: formData.get("projectType"),
+                    details: formData.get("details"),
+                  };
+
+                  try {
+                    await fetch(
+                      "https://script.google.com/macros/s/AKfycbyaIpZID8_cbY8VaeVVRM0P9FQ41VKeu5SuOb0TX7BtczXZa9T1kcVQ5C4Dsagse3_i/exec",
+                      {
+                        method: "POST",
+                        mode: "no-cors",
+                        headers: {
+                          "Content-Type": "text/plain",
+                        },
+                        body: JSON.stringify(data),
+                      }
+                    );
+
+                    alert("Thank you! We will contact you soon.");
+                    form.reset();
+
+                  } catch (error) {
+                    console.error("Error sending form:", error);
+                    alert("There was an error. Please try again.");
+                  }
+                }}
+              >
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <label className="text-xs uppercase tracking-widest font-bold text-zinc-500">{t.contact.form.firstName}</label>
-                    <input type="text" className="w-full bg-zinc-900 border border-zinc-800 p-4 text-white focus:outline-none focus:border-[#ff5a00] transition-colors" />
+                    <label className="text-xs uppercase tracking-widest font-bold text-zinc-500">
+                      {t.contact.form.firstName}
+                    </label>
+                    <input
+                      type="text"
+                      name="firstName"
+                      required
+                      className="w-full bg-zinc-900 border border-zinc-800 p-4 text-white focus:outline-none focus:border-[#ff5a00] transition-colors"
+                    />
                   </div>
+
                   <div className="space-y-2">
-                    <label className="text-xs uppercase tracking-widest font-bold text-zinc-500">{t.contact.form.lastName}</label>
-                    <input type="text" className="w-full bg-zinc-900 border border-zinc-800 p-4 text-white focus:outline-none focus:border-[#ff5a00] transition-colors" />
+                    <label className="text-xs uppercase tracking-widest font-bold text-zinc-500">
+                      {t.contact.form.lastName}
+                    </label>
+                    <input
+                      type="text"
+                      name="lastName"
+                      required
+                      className="w-full bg-zinc-900 border border-zinc-800 p-4 text-white focus:outline-none focus:border-[#ff5a00] transition-colors"
+                    />
                   </div>
                 </div>
+
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <label className="text-xs uppercase tracking-widest font-bold text-zinc-500">{t.contact.form.emailLabel}</label>
-                    <input type="email" className="w-full bg-zinc-900 border border-zinc-800 p-4 text-white focus:outline-none focus:border-[#ff5a00] transition-colors" />
+                    <label className="text-xs uppercase tracking-widest font-bold text-zinc-500">
+                      {t.contact.form.emailLabel}
+                    </label>
+                    <input
+                      type="email"
+                      name="email"
+                      required
+                      className="w-full bg-zinc-900 border border-zinc-800 p-4 text-white focus:outline-none focus:border-[#ff5a00] transition-colors"
+                    />
                   </div>
+
                   <div className="space-y-2">
-                    <label className="text-xs uppercase tracking-widest font-bold text-zinc-500">{t.contact.form.phoneLabel}</label>
-                    <input type="tel" className="w-full bg-zinc-900 border border-zinc-800 p-4 text-white focus:outline-none focus:border-[#ff5a00] transition-colors" />
+                    <label className="text-xs uppercase tracking-widest font-bold text-zinc-500">
+                      {t.contact.form.phoneLabel}
+                    </label>
+                    <input
+                      type="tel"
+                      name="phone"
+                      required
+                      className="w-full bg-zinc-900 border border-zinc-800 p-4 text-white focus:outline-none focus:border-[#ff5a00] transition-colors"
+                    />
                   </div>
                 </div>
+
                 <div className="space-y-2">
-                  <label className="text-xs uppercase tracking-widest font-bold text-zinc-500">{t.contact.form.projectType}</label>
-                  <select className="w-full bg-zinc-900 border border-zinc-800 p-4 text-white focus:outline-none focus:border-[#ff5a00] transition-colors appearance-none">
-                    {t.contact.form.projectTypes.map((pt, i) => <option key={i}>{pt}</option>)}
+                  <label className="text-xs uppercase tracking-widest font-bold text-zinc-500">
+                    {t.contact.form.projectType}
+                  </label>
+
+                  <select
+                    name="projectType"
+                    className="w-full bg-zinc-900 border border-zinc-800 p-4 text-white focus:outline-none focus:border-[#ff5a00] transition-colors appearance-none"
+                  >
+                    {t.contact.form.projectTypes.map((pt, i) => (
+                      <option key={i}>{pt}</option>
+                    ))}
                   </select>
                 </div>
+
                 <div className="space-y-2">
-                  <label className="text-xs uppercase tracking-widest font-bold text-zinc-500">{t.contact.form.details}</label>
-                  <textarea rows={4} className="w-full bg-zinc-900 border border-zinc-800 p-4 text-white focus:outline-none focus:border-[#ff5a00] transition-colors resize-none" placeholder={t.contact.form.detailsPlaceholder}></textarea>
+                  <label className="text-xs uppercase tracking-widest font-bold text-zinc-500">
+                    {t.contact.form.details}
+                  </label>
+
+                  <textarea
+                    name="details"
+                    rows={4}
+                    required
+                    className="w-full bg-zinc-900 border border-zinc-800 p-4 text-white focus:outline-none focus:border-[#ff5a00] transition-colors resize-none"
+                    placeholder={t.contact.form.detailsPlaceholder}
+                  ></textarea>
                 </div>
-                <button type="submit" className="w-full bg-[#ff5a00] text-white p-4 font-bold uppercase tracking-wider hover:bg-orange-600 transition-colors flex justify-center items-center gap-2">
-                  {t.contact.form.submit} <ChevronRight className="w-5 h-5" />
+
+                <button
+                  type="submit"
+                  className="w-full bg-[#ff5a00] text-white p-4 font-bold uppercase tracking-wider hover:bg-orange-600 transition-colors flex justify-center items-center gap-2"
+                >
+                  {t.contact.form.submit}
+                  <ChevronRight className="w-5 h-5" />
                 </button>
               </form>
             </div>
+            
+
           </div>
         </div>
       </section>
-
       {/* ── FOOTER ── */}
       <footer className="bg-black py-16 border-t border-zinc-900">
         <div className="container mx-auto px-6 md:px-12">
