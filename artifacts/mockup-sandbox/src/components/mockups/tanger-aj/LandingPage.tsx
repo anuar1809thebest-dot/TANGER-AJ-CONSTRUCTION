@@ -275,16 +275,6 @@ export function LandingPage() {
           </div>
 
           <div className="flex items-center gap-3">
-            <button
-              type="button"
-              contentEditable={false}
-              suppressContentEditableWarning
-              onClick={() => setEditMode((active) => !active)}
-              className={`hidden lg:flex items-center gap-2 border px-4 py-2 text-[11px] font-bold uppercase tracking-wider transition-colors ${editMode ? 'border-[#ff5a00] bg-[#ff5a00] text-white' : 'border-zinc-700 text-zinc-300 hover:border-[#ff5a00] hover:text-white'}`}
-              title={editMode ? t.nav.editing : t.nav.edit}
-            >
-              {editMode ? '✓' : '✎'} {editMode ? t.nav.editing : t.nav.edit}
-            </button>
             {/* Language toggle */}
             <div contentEditable={false} suppressContentEditableWarning className="flex items-center border border-zinc-700 overflow-hidden rounded-sm">
               <button
