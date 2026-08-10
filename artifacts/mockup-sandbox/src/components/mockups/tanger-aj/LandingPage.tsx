@@ -359,9 +359,9 @@ export function LandingPage() {
       {/* ── STATS & ABOUT ── */}
       <section id="about" className="py-24 bg-[#f8f7f4] relative z-10 -mt-20">
         <div className="container mx-auto px-6 md:px-12">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 border-b border-[#d8d2ca] pb-20">
-            {t.stats.map((s, i) => (
-              <div key={i}>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 border-b border-[#d8d2ca] pb-20">
+            {[t.stats[0], t.stats[2], t.stats[3]].map((s, i) => (
+      <div key={i} className="text-center">
                 <h3 className={`font-heading text-5xl md:text-7xl ${i === 0 ? 'text-[#8f2f36]' : ''}`}>{s.value}</h3>
                 <p className="text-[#68635e] uppercase tracking-widest text-sm font-bold mt-2">{s.label}</p>
               </div>
