@@ -28,7 +28,7 @@ const translations = {
       scroll: 'Défiler',
     },
     stats: [
-      { value: '20+', label: "Années d'expérience" },
+      { value: '35+', label: "Années d'expérience" },
       { value: '31+', label: 'Projets livrés' },
       { value: '100%', label: 'Satisfaction client' },
       { value: '12', label: 'Régions couvertes' },
@@ -66,15 +66,21 @@ const translations = {
         desc: "Restauration d'une façade ancienne dans un village français : reprise de maçonnerie, enduit à la chaux, peinture des menuiseries et conservation des détails d'origine.",
         items: ['Façade restaurée', 'Enduit traditionnel à la chaux', 'Détails patrimoniaux préservés'],
       },
+      proj3: {
+        tag: '03 — AMÉNAGEMENT EXTÉRIEUR',
+        title: 'PISCINE MÉDITERRANÉENNE',
+        desc: "Création d'une piscine sur mesure dans le sud de la France : terrasse en pierre, margelles parfaitement posées, intégration paysagère et finitions soignées autour d'une maison rénovée.",
+        items: ['Piscine sur mesure', 'Terrasse en pierre naturelle', 'Aménagement paysager'],
+      },
       cta: 'Voir le détail du projet',
     },
     advantage: {
       title: "L'AVANTAGE\nTANGER AJ",
-      sub: "Nous ne faisons pas de promesses en l'air. Nous livrons. Notre engagement envers la qualité et la transparence nous distingue depuis 20 ans.",
+      sub: "Nous ne faisons pas de promesses en l'air. Nous livrons. Notre engagement envers la qualité et la transparence nous distingue depuis 35 ans.",
       items: [
         { title: 'SÉCURITÉ SANS COMPROMIS', desc: "La sécurité de nos équipes et de nos clients est non négociable. Protocoles stricts, formations continues, zéro accident." },
         { title: 'RESPECT DES DÉLAIS', desc: "Un planning tenu est un gage de confiance. Nous planifions avec précision et anticipons chaque aléa pour livrer à la date promise." },
-        { title: 'QUALITÉ CERTIFIÉE', desc: "Artisans RGE, assurance décennale, matériaux sélectionnés — chaque étape est validée pour vous offrir un ouvrage pérenne." },
+        { title: 'QUALITÉ CERTIFIÉE', desc: "Artisans qualifiés, assurance décennale, matériaux sélectionnés — chaque étape est validée pour vous offrir un ouvrage pérenne." },
       ],
     },
     contact: {
@@ -171,6 +177,12 @@ const translations = {
         title: 'OLD VILLAGE FACADE',
         desc: "Restoration of an old facade in a French village: masonry repairs, traditional lime render, painted joinery and preservation of original details.",
         items: ['Facade restored', 'Traditional lime render', 'Heritage details preserved'],
+      },
+      proj3: {
+        tag: '03 — OUTDOOR DEVELOPMENT',
+        title: 'MEDITERRANEAN POOL',
+        desc: "A custom swimming pool created in southern France: natural stone terrace, precisely installed coping, landscape integration and carefully finished surroundings for a renovated home.",
+        items: ['Custom swimming pool', 'Natural stone terrace', 'Landscape design'],
       },
       cta: 'View Project Details',
     },
@@ -288,9 +300,12 @@ export function LandingPage() {
               >EN</button>
             </div>
 
-            <a href="#contact" contentEditable={false} suppressContentEditableWarning className="hidden md:flex items-center gap-2 bg-[#292725] text-white px-5 py-2.5 font-bold uppercase text-xs tracking-wider hover:bg-[#8f2f36] transition-colors duration-300">
+            
+            <a href="#contact" contentEditable={false} suppressContentEditableWarning className="hidden md:flex items-center gap-2 bg-[#8f2f36] text-white px-5 py-2.5 font-bold uppercase text-xs tracking-wider transition-colors duration-300">
               {t.nav.quote} <MoveUpRight className="w-3.5 h-3.5" />
             </a>
+            
+
           </div>
         </div>
       </nav>
@@ -388,7 +403,7 @@ export function LandingPage() {
                 <service.icon className="w-12 h-12 text-[#8f2f36] mb-8 relative z-10" />
                 <h3 className="font-heading text-3xl mb-4 relative z-10 group-hover:text-[#8f2f36] transition-colors">{service.title}</h3>
                 <div className="w-12 h-0.5 bg-[#d8d2ca] group-hover:bg-[#8f2f36] transition-colors mb-4 relative z-10" />
-                <div className="reveal-content relative z-10">
+                <div className="relative z-10">
                   <p className="text-[#5f5a55] leading-relaxed text-sm">{service.desc}</p>
                 </div>
               </div>
@@ -450,6 +465,29 @@ export function LandingPage() {
                 alt="Restauration d'une façade de patrimoine"
                 className="relative z-10 w-full aspect-[4/3] object-cover transition-all duration-700"
               />
+            </div>
+          </div>
+
+          {/* Project 3 */}
+          <div className="grid md:grid-cols-12 gap-12 md:gap-8 items-center mt-32">
+            <div className="md:col-span-7 relative group">
+              <div className="absolute inset-0 bg-[#8f2f36] translate-x-4 translate-y-4 transition-transform group-hover:translate-x-6 group-hover:translate-y-6" />
+              <img
+                src="/__mockup/images/tanger-aj-project3_pool.jpg"
+                alt="Piscine extérieure sur mesure avec terrasse en pierre"
+                className="relative z-10 w-full aspect-[4/3] object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+              />
+            </div>
+            <div className="md:col-span-4 md:col-start-9 md:pl-8">
+              <p className="text-[#8f2f36] font-bold tracking-widest text-sm mb-2">{t.projects.proj3.tag}</p>
+              <h3 className="font-heading text-4xl md:text-5xl mb-6">{t.projects.proj3.title}</h3>
+              <p className="text-[#5f5a55] mb-8 leading-relaxed">{t.projects.proj3.desc}</p>
+              <ul className="space-y-4 mb-8 text-sm font-bold text-[#4c4844]">
+                {t.projects.proj3.items.map((item, i) => (
+                  <li key={i} className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-[#8f2f36]" />{item}</li>
+                ))}
+              </ul>
+              <a href="#" className="uppercase tracking-widest text-sm font-bold border-b border-[#8f2f36] pb-1 hover:text-[#8f2f36] transition-colors">{t.projects.cta}</a>
             </div>
           </div>
         </div>
@@ -522,6 +560,7 @@ export function LandingPage() {
             <div className="bg-[#f8f7f4] border border-[#d8d2ca] p-8 md:p-12 relative z-10 shadow-[0_18px_50px_rgba(55,45,35,0.12)]">
               <h3 className="font-heading text-3xl mb-8">{t.contact.form.title}</h3>
 
+              
               <form
                 className="space-y-6"
                 onSubmit={async (e) => {
@@ -570,7 +609,7 @@ export function LandingPage() {
                       type="text"
                       name="firstName"
                       required
-                      className="w-full bg-[#e8e4de] border border-[#d8d2ca] p-4 text-white focus:outline-none focus:border-[#8f2f36] transition-colors"
+                      className="w-full bg-[#e8e4de] border border-[#d8d2ca] p-4 text-[#2a2826] focus:outline-none focus:border-[#8f2f36] transition-colors"
                     />
                   </div>
 
@@ -582,7 +621,7 @@ export function LandingPage() {
                       type="text"
                       name="lastName"
                       required
-                      className="w-full bg-[#e8e4de] border border-[#d8d2ca] p-4 text-white focus:outline-none focus:border-[#8f2f36] transition-colors"
+                      className="w-full bg-[#e8e4de] border border-[#d8d2ca] p-4 text-[#2a2826] focus:outline-none focus:border-[#8f2f36] transition-colors"
                     />
                   </div>
                 </div>
@@ -596,7 +635,7 @@ export function LandingPage() {
                       type="email"
                       name="email"
                       required
-                      className="w-full bg-[#e8e4de] border border-[#d8d2ca] p-4 text-white focus:outline-none focus:border-[#8f2f36] transition-colors"
+                      className="w-full bg-[#e8e4de] border border-[#d8d2ca] p-4 text-[#2a2826] focus:outline-none focus:border-[#8f2f36] transition-colors"
                     />
                   </div>
 
@@ -608,7 +647,7 @@ export function LandingPage() {
                       type="tel"
                       name="phone"
                       required
-                      className="w-full bg-[#e8e4de] border border-[#d8d2ca] p-4 text-white focus:outline-none focus:border-[#8f2f36] transition-colors"
+                      className="w-full bg-[#e8e4de] border border-[#d8d2ca] p-4 text-[#2a2826] focus:outline-none focus:border-[#8f2f36] transition-colors"
                     />
                   </div>
                 </div>
@@ -620,7 +659,7 @@ export function LandingPage() {
 
                   <select
                     name="projectType"
-                    className="w-full bg-[#e8e4de] border border-[#d8d2ca] p-4 text-white focus:outline-none focus:border-[#8f2f36] transition-colors appearance-none"
+                    className="w-full bg-[#e8e4de] border border-[#d8d2ca] p-4 text-[#2a2826] focus:outline-none focus:border-[#8f2f36] transition-colors appearance-none"
                   >
                     {t.contact.form.projectTypes.map((pt, i) => (
                       <option key={i}>{pt}</option>
@@ -637,7 +676,7 @@ export function LandingPage() {
                     name="details"
                     rows={4}
                     required
-                    className="w-full bg-[#e8e4de] border border-[#d8d2ca] p-4 text-white focus:outline-none focus:border-[#8f2f36] transition-colors resize-none"
+                    className="w-full bg-[#e8e4de] border border-[#d8d2ca] p-4 text-[#2a2826] placeholder:text-[#2a2826] focus:outline-none focus:border-[#8f2f36] transition-colors resize-none"
                     placeholder={t.contact.form.detailsPlaceholder}
                   ></textarea>
                 </div>
@@ -650,6 +689,8 @@ export function LandingPage() {
                   <ChevronRight className="w-5 h-5" />
                 </button>
               </form>
+              
+
             </div>
             
 
