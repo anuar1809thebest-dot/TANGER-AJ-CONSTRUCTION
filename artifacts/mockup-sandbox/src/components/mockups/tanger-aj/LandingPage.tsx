@@ -84,7 +84,7 @@ const translations = {
       phone: 'Ligne directe',
       email: 'Email',
       address: 'Siège social',
-      addressValue: '12 Rue du Bâtisseur\n75011 Paris, France',
+      addressValue: 'Rue Jacques Ressegaire\n13200 Arles, France',
       form: {
         title: 'DEMANDER UN DEVIS GRATUIT',
         firstName: 'Prénom',
@@ -190,7 +190,7 @@ const translations = {
       phone: 'Direct Line',
       email: 'Email',
       address: 'Head Office',
-      addressValue: '12 Rue du Bâtisseur\n75011 Paris, France',
+      addressValue: 'Rue Jacques Ressegaire\n13200 Arles, France',
       form: {
         title: 'REQUEST A FREE QUOTE',
         firstName: 'First Name',
@@ -237,7 +237,7 @@ export function LandingPage() {
   }, []);
 
   return (
-    <div className={`min-h-screen bg-[#0a0a0a] text-zinc-100 overflow-x-hidden selection:bg-[#ff5a00] selection:text-white ${editMode ? 'editing' : ''}`} contentEditable={editMode} suppressContentEditableWarning style={{ fontFamily: "'Manrope', sans-serif" }}>
+    <div className={`min-h-screen bg-[#f8f7f4] text-[#292725] overflow-x-hidden selection:bg-[#8f2f36] selection:text-white ${editMode ? 'editing' : ''}`} contentEditable={editMode} suppressContentEditableWarning style={{ fontFamily: "'Manrope', sans-serif" }}>
       <style dangerouslySetInnerHTML={{ __html: `
         @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&display=swap');
         .font-heading { font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.02em; }
@@ -247,31 +247,31 @@ export function LandingPage() {
         .reveal-hover:hover .reveal-content { max-height: 200px; opacity: 1; margin-top: 1rem; }
         .text-stroke { -webkit-text-stroke: 1px rgba(255,255,255,0.12); color: transparent; }
         .lang-btn { transition: all 0.2s ease; }
-        .lang-btn.active { background: #ff5a00; color: white; }
+        .lang-btn.active { background: #8f2f36; color: white; }
         .lang-btn:not(.active) { background: transparent; color: #71717a; }
-        .lang-btn:not(.active):hover { color: white; }
+        .lang-btn:not(.active):hover { color: #292725; }
         .editing h1, .editing h2, .editing h3, .editing h4, .editing p, .editing li, .editing a, .editing button, .editing label, .editing option {
-          outline: 1px dashed rgba(255, 90, 0, 0.55);
+          outline: 1px dashed rgba(143, 47, 54, 0.55);
           outline-offset: 3px;
           cursor: text;
         }
         .editing input, .editing textarea, .editing select { cursor: text; }
       `}} />
       {/* ── NAV ── */}
-      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b ${scrolled ? 'bg-[#0a0a0a]/92 backdrop-blur-md border-white/10 py-3' : 'bg-transparent border-transparent py-5'}`}>
+      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b ${scrolled ? 'bg-[#f8f7f4]/95 backdrop-blur-md border-[#dedad3] py-3' : 'bg-[#f8f7f4]/80 backdrop-blur-sm border-transparent py-5'}`}>
         <div className="container mx-auto px-6 md:px-12 flex justify-between items-center">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-[#ff5a00] flex items-center justify-center">
+            <div className="w-8 h-8 bg-[#8f2f36] flex items-center justify-center">
               <Building2 className="w-5 h-5 text-white" />
             </div>
             <span className="font-heading text-2xl md:text-3xl tracking-wider pt-1">TANGER AJ</span>
           </div>
 
-          <div className="hidden md:flex items-center gap-8 text-sm font-semibold tracking-wide uppercase text-zinc-300">
-            <a href="#about" className="hover:text-[#ff5a00] transition-colors">{t.nav.about}</a>
-            <a href="#services" className="hover:text-[#ff5a00] transition-colors">{t.nav.services}</a>
-            <a href="#projects" className="hover:text-[#ff5a00] transition-colors">{t.nav.projects}</a>
-            <a href="#contact" className="hover:text-[#ff5a00] transition-colors">{t.nav.contact}</a>
+          <div className="hidden md:flex items-center gap-8 text-sm font-semibold tracking-wide uppercase text-[#68635e]">
+            <a href="#about" className="hover:text-[#8f2f36] transition-colors">{t.nav.about}</a>
+            <a href="#services" className="hover:text-[#8f2f36] transition-colors">{t.nav.services}</a>
+            <a href="#projects" className="hover:text-[#8f2f36] transition-colors">{t.nav.projects}</a>
+            <a href="#contact" className="hover:text-[#8f2f36] transition-colors">{t.nav.contact}</a>
           </div>
 
           <div className="flex items-center gap-3">
@@ -288,7 +288,7 @@ export function LandingPage() {
               >EN</button>
             </div>
 
-            <a href="#contact" contentEditable={false} suppressContentEditableWarning className="hidden md:flex items-center gap-2 bg-white text-black px-5 py-2.5 font-bold uppercase text-xs tracking-wider hover:bg-[#ff5a00] hover:text-white transition-colors duration-300">
+            <a href="#contact" contentEditable={false} suppressContentEditableWarning className="hidden md:flex items-center gap-2 bg-[#292725] text-white px-5 py-2.5 font-bold uppercase text-xs tracking-wider hover:bg-[#8f2f36] transition-colors duration-300">
               {t.nav.quote} <MoveUpRight className="w-3.5 h-3.5" />
             </a>
           </div>
@@ -296,15 +296,15 @@ export function LandingPage() {
       </nav>
 
       {editMode && (
-        <div contentEditable={false} suppressContentEditableWarning className="fixed bottom-5 left-1/2 -translate-x-1/2 z-[60] bg-[#ff5a00] text-white px-5 py-3 text-xs font-bold uppercase tracking-wider shadow-2xl">
+        <div contentEditable={false} suppressContentEditableWarning className="fixed bottom-5 left-1/2 -translate-x-1/2 z-[60] bg-[#8f2f36] text-white px-5 py-3 text-xs font-bold uppercase tracking-wider shadow-[0_18px_50px_rgba(55,45,35,0.12)]">
           {t.nav.editing} — cliquez sur un texte ou un chiffre pour le remplacer
         </div>
       )}
       {/* ── HERO ── */}
-      <section className="relative min-h-[100dvh] flex items-center justify-center clip-diagonal bg-[#0a0a0a] pt-20">
+      <section className="relative min-h-[100dvh] flex items-center justify-center clip-diagonal bg-[#f8f7f4] pt-20">
         <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-gradient-to-r from-black/92 via-black/65 to-black/30 z-10" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent z-10" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#f8f7f4]/95 via-[#f8f7f4]/72 to-[#f8f7f4]/15 z-10" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#f8f7f4]/85 via-transparent to-transparent z-10" />
           <img
             src="/__mockup/images/tanger-aj-hero_2.jpg"
             alt="Chantier de construction d'une maison"
@@ -315,21 +315,21 @@ export function LandingPage() {
         <div className="container mx-auto px-6 md:px-12 relative z-20 pt-20 pb-32">
           <div className="max-w-4xl">
             <div className="flex items-center gap-4 mb-6">
-              <div className="w-12 h-1 bg-[#ff5a00]" />
-              <p className="uppercase tracking-[0.2em] text-[#ff5a00] font-bold text-sm">{t.hero.tagline}</p>
+              <div className="w-12 h-1 bg-[#8f2f36]" />
+              <p className="uppercase tracking-[0.2em] text-[#8f2f36] font-bold text-sm">{t.hero.tagline}</p>
             </div>
             <h1 className="font-heading text-7xl md:text-8xl lg:text-[9rem] leading-[0.88] tracking-tight mb-8">
               {t.hero.headline1}<br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-b from-white to-zinc-500">{t.hero.headline2}</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-b from-[#292725] to-[#68635e]">{t.hero.headline2}</span>
             </h1>
-            <p className="text-lg md:text-xl text-zinc-400 max-w-2xl mb-12 font-medium leading-relaxed">
+            <p className="text-lg md:text-xl text-[#5f5a55] max-w-2xl mb-12 font-medium leading-relaxed">
               {t.hero.sub}
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <a href="#projects" className="bg-[#ff5a00] text-white px-8 py-4 font-bold uppercase tracking-wider flex items-center justify-center gap-3 hover:bg-orange-600 transition-colors group">
+              <a href="#projects" className="bg-[#8f2f36] text-white px-8 py-4 font-bold uppercase tracking-wider flex items-center justify-center gap-3 hover:bg-[#70252c] transition-colors group">
                 {t.hero.cta1} <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </a>
-              <a href="#contact" className="border border-zinc-700 bg-black/50 backdrop-blur-sm text-white px-8 py-4 font-bold uppercase tracking-wider flex items-center justify-center gap-3 hover:bg-white hover:text-black transition-colors">
+              <a href="#contact" className="border border-[#bdb5ab] bg-white/70 backdrop-blur-sm text-[#292725] px-8 py-4 font-bold uppercase tracking-wider flex items-center justify-center gap-3 hover:bg-[#292725] hover:text-white transition-colors">
                 {t.hero.cta2}
               </a>
             </div>
@@ -337,18 +337,18 @@ export function LandingPage() {
         </div>
 
         <div className="absolute bottom-12 left-6 md:left-12 z-20 flex flex-col items-center gap-4">
-          <span className="text-xs tracking-widest text-zinc-500 font-bold uppercase" style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}>{t.hero.scroll}</span>
-          <ChevronDown className="w-5 h-5 text-zinc-500 animate-bounce" />
+          <span className="text-xs tracking-widest text-[#68635e] font-bold uppercase" style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}>{t.hero.scroll}</span>
+          <ChevronDown className="w-5 h-5 text-[#68635e] animate-bounce" />
         </div>
       </section>
       {/* ── STATS & ABOUT ── */}
-      <section id="about" className="py-24 bg-[#0a0a0a] relative z-10 -mt-20">
+      <section id="about" className="py-24 bg-[#f8f7f4] relative z-10 -mt-20">
         <div className="container mx-auto px-6 md:px-12">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 border-b border-zinc-800 pb-20">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 border-b border-[#d8d2ca] pb-20">
             {t.stats.map((s, i) => (
               <div key={i}>
-                <h3 className={`font-heading text-5xl md:text-7xl ${i === 0 ? 'text-[#ff5a00]' : ''}`}>{s.value}</h3>
-                <p className="text-zinc-500 uppercase tracking-widest text-sm font-bold mt-2">{s.label}</p>
+                <h3 className={`font-heading text-5xl md:text-7xl ${i === 0 ? 'text-[#8f2f36]' : ''}`}>{s.value}</h3>
+                <p className="text-[#68635e] uppercase tracking-widest text-sm font-bold mt-2">{s.label}</p>
               </div>
             ))}
           </div>
@@ -356,40 +356,40 @@ export function LandingPage() {
           <div className="pt-24 grid md:grid-cols-2 gap-16 items-center">
             <div>
               <h2 className="font-heading text-5xl md:text-6xl mb-6 leading-tight" style={{ whiteSpace: 'pre-line' }}>{t.about.title}</h2>
-              <div className="w-24 h-2 bg-[#ff5a00] mb-8" />
+              <div className="w-24 h-2 bg-[#8f2f36] mb-8" />
             </div>
             <div>
-              <p className="text-zinc-400 text-lg leading-relaxed mb-6">{t.about.p1}</p>
-              <p className="text-zinc-400 text-lg leading-relaxed mb-8">{t.about.p2}</p>
+              <p className="text-[#5f5a55] text-lg leading-relaxed mb-6">{t.about.p1}</p>
+              <p className="text-[#5f5a55] text-lg leading-relaxed mb-8">{t.about.p2}</p>
             </div>
           </div>
         </div>
       </section>
       {/* ── SERVICES ── */}
-      <section id="services" className="py-32 bg-[#121212] relative clip-diagonal-bottom">
+      <section id="services" className="py-32 bg-[#eeece8] relative clip-diagonal-bottom">
         <div className="container mx-auto px-6 md:px-12">
           <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
             <div className="max-w-2xl">
               <div className="flex items-center gap-4 mb-4">
-                <div className="w-8 h-1 bg-[#ff5a00]" />
-                <p className="uppercase tracking-[0.2em] text-[#ff5a00] font-bold text-sm">{t.services.eyebrow}</p>
+                <div className="w-8 h-1 bg-[#8f2f36]" />
+                <p className="uppercase tracking-[0.2em] text-[#8f2f36] font-bold text-sm">{t.services.eyebrow}</p>
               </div>
               <h2 className="font-heading text-6xl md:text-8xl">{t.services.title}</h2>
             </div>
-            <p className="text-zinc-400 max-w-sm mb-4">{t.services.sub}</p>
+            <p className="text-[#5f5a55] max-w-sm mb-4">{t.services.sub}</p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {t.services.items.map((service, i) => (
-              <div key={i} className="group bg-[#0a0a0a] border border-zinc-800 p-10 hover:border-[#ff5a00] transition-colors reveal-hover cursor-pointer relative overflow-hidden">
+              <div key={i} className="group bg-[#f8f7f4] border border-[#d8d2ca] p-10 hover:border-[#8f2f36] transition-colors reveal-hover cursor-pointer relative overflow-hidden">
                 <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity">
                   <service.icon className="w-32 h-32 text-white" />
                 </div>
-                <service.icon className="w-12 h-12 text-[#ff5a00] mb-8 relative z-10" />
-                <h3 className="font-heading text-3xl mb-4 relative z-10 group-hover:text-[#ff5a00] transition-colors">{service.title}</h3>
-                <div className="w-12 h-0.5 bg-zinc-800 group-hover:bg-[#ff5a00] transition-colors mb-4 relative z-10" />
+                <service.icon className="w-12 h-12 text-[#8f2f36] mb-8 relative z-10" />
+                <h3 className="font-heading text-3xl mb-4 relative z-10 group-hover:text-[#8f2f36] transition-colors">{service.title}</h3>
+                <div className="w-12 h-0.5 bg-[#d8d2ca] group-hover:bg-[#8f2f36] transition-colors mb-4 relative z-10" />
                 <div className="reveal-content relative z-10">
-                  <p className="text-zinc-400 leading-relaxed text-sm">{service.desc}</p>
+                  <p className="text-[#5f5a55] leading-relaxed text-sm">{service.desc}</p>
                 </div>
               </div>
             ))}
@@ -397,12 +397,12 @@ export function LandingPage() {
         </div>
       </section>
       {/* ── PROJECTS ── */}
-      <section id="projects" className="py-32 bg-[#0a0a0a]">
+      <section id="projects" className="py-32 bg-[#f8f7f4]">
         <div className="container mx-auto px-6 md:px-12">
           <div className="mb-24 relative">
             <div className="flex items-center gap-4 mb-4">
-              <div className="w-8 h-1 bg-[#ff5a00]" />
-              <p className="uppercase tracking-[0.2em] text-[#ff5a00] font-bold text-sm">{t.projects.eyebrow}</p>
+              <div className="w-8 h-1 bg-[#8f2f36]" />
+              <p className="uppercase tracking-[0.2em] text-[#8f2f36] font-bold text-sm">{t.projects.eyebrow}</p>
             </div>
             <h2 className="font-heading text-5xl md:text-7xl relative z-10">{t.projects.title}</h2>
           </div>
@@ -410,65 +410,65 @@ export function LandingPage() {
           {/* Project 1 */}
           <div className="grid md:grid-cols-12 gap-12 md:gap-8 items-center mb-32">
             <div className="md:col-span-7 relative group">
-              <div className="absolute inset-0 bg-[#ff5a00] translate-x-4 translate-y-4 transition-transform group-hover:translate-x-6 group-hover:translate-y-6" />
+              <div className="absolute inset-0 bg-[#8f2f36] translate-x-4 translate-y-4 transition-transform group-hover:translate-x-6 group-hover:translate-y-6" />
               <img
             src="/__mockup/images/tanger-aj-project1_color.jpg"
                 alt="Rénovation intérieure avec pose de carrelage"
-                className="relative z-10 w-full aspect-[4/3] object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+                className="relative z-10 w-full aspect-[4/3] object-cover transition-all duration-700"
               />
             </div>
             <div className="md:col-span-4 md:col-start-9 md:pl-8">
-              <p className="text-[#ff5a00] font-bold tracking-widest text-sm mb-2">{t.projects.proj1.tag}</p>
+              <p className="text-[#8f2f36] font-bold tracking-widest text-sm mb-2">{t.projects.proj1.tag}</p>
               <h3 className="font-heading text-4xl md:text-5xl mb-6">{t.projects.proj1.title}</h3>
-              <p className="text-zinc-400 mb-8 leading-relaxed">{t.projects.proj1.desc}</p>
-              <ul className="space-y-4 mb-8 text-sm font-bold text-zinc-300">
+              <p className="text-[#5f5a55] mb-8 leading-relaxed">{t.projects.proj1.desc}</p>
+              <ul className="space-y-4 mb-8 text-sm font-bold text-[#4c4844]">
                 {t.projects.proj1.items.map((item, i) => (
-                  <li key={i} className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-[#ff5a00]" />{item}</li>
+                  <li key={i} className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-[#8f2f36]" />{item}</li>
                 ))}
               </ul>
-              <a href="#" className="uppercase tracking-widest text-sm font-bold border-b border-[#ff5a00] pb-1 hover:text-[#ff5a00] transition-colors">{t.projects.cta}</a>
+              <a href="#" className="uppercase tracking-widest text-sm font-bold border-b border-[#8f2f36] pb-1 hover:text-[#8f2f36] transition-colors">{t.projects.cta}</a>
             </div>
           </div>
 
           {/* Project 2 */}
           <div className="grid md:grid-cols-12 gap-12 md:gap-8 items-center">
             <div className="md:col-span-4 order-2 md:order-1">
-              <p className="text-[#ff5a00] font-bold tracking-widest text-sm mb-2">{t.projects.proj2.tag}</p>
+              <p className="text-[#8f2f36] font-bold tracking-widest text-sm mb-2">{t.projects.proj2.tag}</p>
               <h3 className="font-heading text-4xl md:text-5xl mb-6">{t.projects.proj2.title}</h3>
-              <p className="text-zinc-400 mb-8 leading-relaxed">{t.projects.proj2.desc}</p>
-              <ul className="space-y-4 mb-8 text-sm font-bold text-zinc-300">
+              <p className="text-[#5f5a55] mb-8 leading-relaxed">{t.projects.proj2.desc}</p>
+              <ul className="space-y-4 mb-8 text-sm font-bold text-[#4c4844]">
                 {t.projects.proj2.items.map((item, i) => (
-                  <li key={i} className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-[#ff5a00]" />{item}</li>
+                  <li key={i} className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-[#8f2f36]" />{item}</li>
                 ))}
               </ul>
-              <a href="#" className="uppercase tracking-widest text-sm font-bold border-b border-[#ff5a00] pb-1 hover:text-[#ff5a00] transition-colors">{t.projects.cta}</a>
+              <a href="#" className="uppercase tracking-widest text-sm font-bold border-b border-[#8f2f36] pb-1 hover:text-[#8f2f36] transition-colors">{t.projects.cta}</a>
             </div>
             <div className="md:col-span-7 md:col-start-6 relative group order-1 md:order-2">
-              <div className="absolute inset-0 bg-zinc-800 -translate-x-4 translate-y-4 transition-transform group-hover:-translate-x-6 group-hover:translate-y-6" />
+              <div className="absolute inset-0 bg-[#d8d2ca] -translate-x-4 translate-y-4 transition-transform group-hover:-translate-x-6 group-hover:translate-y-6" />
               <img
             src="/__mockup/images/tanger-aj-project2_color.jpg"
                 alt="Restauration d'une façade de patrimoine"
-                className="relative z-10 w-full aspect-[4/3] object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+                className="relative z-10 w-full aspect-[4/3] object-cover transition-all duration-700"
               />
             </div>
           </div>
         </div>
       </section>
       {/* ── ADVANTAGE ── */}
-      <section className="py-32 bg-[#ff5a00] text-black">
+      <section className="py-32 bg-[#8f2f36] text-[#292725]">
         <div className="container mx-auto px-6 md:px-12">
           <div className="grid md:grid-cols-2 gap-16 items-center">
             <div>
               <h2 className="font-heading text-6xl md:text-8xl leading-none mb-8" style={{ whiteSpace: 'pre-line' }}>{t.advantage.title}</h2>
-              <p className="text-black/80 text-xl font-medium max-w-md">{t.advantage.sub}</p>
+              <p className="text-[#292725]/80 text-xl font-medium max-w-md">{t.advantage.sub}</p>
             </div>
             <div className="grid gap-8">
               {t.advantage.items.map((item, i) => (
-                <div key={i} className="flex gap-6 border-b border-black/20 pb-8">
+                <div key={i} className="flex gap-6 border-b border-white/25 pb-8">
                   <div className="font-heading text-4xl opacity-50 shrink-0">0{i + 1}</div>
                   <div>
                     <h4 className="font-heading text-2xl mb-2">{item.title}</h4>
-                    <p className="text-black/70 font-medium leading-relaxed">{item.desc}</p>
+                    <p className="text-[#292725]/70 font-medium leading-relaxed">{item.desc}</p>
                   </div>
                 </div>
               ))}
@@ -477,49 +477,49 @@ export function LandingPage() {
         </div>
       </section>
       {/* ── CONTACT ── */}
-      <section id="contact" className="py-32 bg-[#121212] relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-1/2 h-full bg-[#0a0a0a] clip-diagonal hidden lg:block z-0" />
+      <section id="contact" className="py-32 bg-[#eeece8] relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-1/2 h-full bg-[#f8f7f4] clip-diagonal hidden lg:block z-0" />
         <div className="container mx-auto px-6 md:px-12 relative z-10">
           <div className="grid lg:grid-cols-2 gap-16">
             <div className="pr-0 lg:pr-12">
               <div className="flex items-center gap-4 mb-4">
-                <div className="w-8 h-1 bg-[#ff5a00]" />
-                <p className="uppercase tracking-[0.2em] text-[#ff5a00] font-bold text-sm">{t.contact.eyebrow}</p>
+                <div className="w-8 h-1 bg-[#8f2f36]" />
+                <p className="uppercase tracking-[0.2em] text-[#8f2f36] font-bold text-sm">{t.contact.eyebrow}</p>
               </div>
               <h2 className="font-heading text-5xl md:text-7xl mb-8 leading-tight" style={{ whiteSpace: 'pre-line' }}>{t.contact.title}</h2>
-              <p className="text-zinc-400 text-lg mb-12">{t.contact.sub}</p>
+              <p className="text-[#5f5a55] text-lg mb-12">{t.contact.sub}</p>
 
               <div className="space-y-8">
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-zinc-900 border border-zinc-800 flex items-center justify-center shrink-0">
-                    <Phone className="w-5 h-5 text-[#ff5a00]" />
+                  <div className="w-12 h-12 bg-[#e8e4de] border border-[#d8d2ca] flex items-center justify-center shrink-0">
+                    <Phone className="w-5 h-5 text-[#8f2f36]" />
                   </div>
                   <div>
-                    <p className="text-zinc-500 uppercase tracking-widest text-xs font-bold mb-1">{t.contact.phone}</p>
+                    <p className="text-[#68635e] uppercase tracking-widest text-xs font-bold mb-1">{t.contact.phone}</p>
                     <p className="text-2xl font-heading tracking-wider">+33 7 58 15 11 47</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-zinc-900 border border-zinc-800 flex items-center justify-center shrink-0">
-                    <Mail className="w-5 h-5 text-[#ff5a00]" />
+                  <div className="w-12 h-12 bg-[#e8e4de] border border-[#d8d2ca] flex items-center justify-center shrink-0">
+                    <Mail className="w-5 h-5 text-[#8f2f36]" />
                   </div>
                   <div>
-                    <p className="text-zinc-500 uppercase tracking-widest text-xs font-bold mb-1">{t.contact.email}</p>
+                    <p className="text-[#68635e] uppercase tracking-widest text-xs font-bold mb-1">{t.contact.email}</p>
                     <p className="text-lg font-medium">construction.ajenoui@gmail.com</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-zinc-900 border border-zinc-800 flex items-center justify-center shrink-0">
-                    <MapPin className="w-5 h-5 text-[#ff5a00]" />
+                  <div className="w-12 h-12 bg-[#e8e4de] border border-[#d8d2ca] flex items-center justify-center shrink-0">
+                    <MapPin className="w-5 h-5 text-[#8f2f36]" />
                   </div>
                   <div>
-                    <p className="text-zinc-500 uppercase tracking-widest text-xs font-bold mb-1">{t.contact.address}</p>
-                    <p className="text-lg font-medium text-zinc-300" style={{ whiteSpace: 'pre-line' }}>Rue Jacques Ressegaire{'\n'}13200 Arles, France</p>
+                    <p className="text-[#68635e] uppercase tracking-widest text-xs font-bold mb-1">{t.contact.address}</p>
+                    <p className="text-lg font-medium text-[#4c4844]" style={{ whiteSpace: 'pre-line' }}>Rue Jacques Ressegaire{'\n'}13200 Arles, France</p>
                   </div>
                 </div>
               </div>
             </div>
-            <div className="bg-[#0a0a0a] border border-zinc-800 p-8 md:p-12 relative z-10 shadow-2xl">
+            <div className="bg-[#f8f7f4] border border-[#d8d2ca] p-8 md:p-12 relative z-10 shadow-[0_18px_50px_rgba(55,45,35,0.12)]">
               <h3 className="font-heading text-3xl mb-8">{t.contact.form.title}</h3>
 
               <form
@@ -563,64 +563,64 @@ export function LandingPage() {
               >
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <label className="text-xs uppercase tracking-widest font-bold text-zinc-500">
+                    <label className="text-xs uppercase tracking-widest font-bold text-[#68635e]">
                       {t.contact.form.firstName}
                     </label>
                     <input
                       type="text"
                       name="firstName"
                       required
-                      className="w-full bg-zinc-900 border border-zinc-800 p-4 text-white focus:outline-none focus:border-[#ff5a00] transition-colors"
+                      className="w-full bg-[#e8e4de] border border-[#d8d2ca] p-4 text-white focus:outline-none focus:border-[#8f2f36] transition-colors"
                     />
                   </div>
 
                   <div className="space-y-2">
-                    <label className="text-xs uppercase tracking-widest font-bold text-zinc-500">
+                    <label className="text-xs uppercase tracking-widest font-bold text-[#68635e]">
                       {t.contact.form.lastName}
                     </label>
                     <input
                       type="text"
                       name="lastName"
                       required
-                      className="w-full bg-zinc-900 border border-zinc-800 p-4 text-white focus:outline-none focus:border-[#ff5a00] transition-colors"
+                      className="w-full bg-[#e8e4de] border border-[#d8d2ca] p-4 text-white focus:outline-none focus:border-[#8f2f36] transition-colors"
                     />
                   </div>
                 </div>
 
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <label className="text-xs uppercase tracking-widest font-bold text-zinc-500">
+                    <label className="text-xs uppercase tracking-widest font-bold text-[#68635e]">
                       {t.contact.form.emailLabel}
                     </label>
                     <input
                       type="email"
                       name="email"
                       required
-                      className="w-full bg-zinc-900 border border-zinc-800 p-4 text-white focus:outline-none focus:border-[#ff5a00] transition-colors"
+                      className="w-full bg-[#e8e4de] border border-[#d8d2ca] p-4 text-white focus:outline-none focus:border-[#8f2f36] transition-colors"
                     />
                   </div>
 
                   <div className="space-y-2">
-                    <label className="text-xs uppercase tracking-widest font-bold text-zinc-500">
+                    <label className="text-xs uppercase tracking-widest font-bold text-[#68635e]">
                       {t.contact.form.phoneLabel}
                     </label>
                     <input
                       type="tel"
                       name="phone"
                       required
-                      className="w-full bg-zinc-900 border border-zinc-800 p-4 text-white focus:outline-none focus:border-[#ff5a00] transition-colors"
+                      className="w-full bg-[#e8e4de] border border-[#d8d2ca] p-4 text-white focus:outline-none focus:border-[#8f2f36] transition-colors"
                     />
                   </div>
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-xs uppercase tracking-widest font-bold text-zinc-500">
+                  <label className="text-xs uppercase tracking-widest font-bold text-[#68635e]">
                     {t.contact.form.projectType}
                   </label>
 
                   <select
                     name="projectType"
-                    className="w-full bg-zinc-900 border border-zinc-800 p-4 text-white focus:outline-none focus:border-[#ff5a00] transition-colors appearance-none"
+                    className="w-full bg-[#e8e4de] border border-[#d8d2ca] p-4 text-white focus:outline-none focus:border-[#8f2f36] transition-colors appearance-none"
                   >
                     {t.contact.form.projectTypes.map((pt, i) => (
                       <option key={i}>{pt}</option>
@@ -629,7 +629,7 @@ export function LandingPage() {
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-xs uppercase tracking-widest font-bold text-zinc-500">
+                  <label className="text-xs uppercase tracking-widest font-bold text-[#68635e]">
                     {t.contact.form.details}
                   </label>
 
@@ -637,14 +637,14 @@ export function LandingPage() {
                     name="details"
                     rows={4}
                     required
-                    className="w-full bg-zinc-900 border border-zinc-800 p-4 text-white focus:outline-none focus:border-[#ff5a00] transition-colors resize-none"
+                    className="w-full bg-[#e8e4de] border border-[#d8d2ca] p-4 text-white focus:outline-none focus:border-[#8f2f36] transition-colors resize-none"
                     placeholder={t.contact.form.detailsPlaceholder}
                   ></textarea>
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full bg-[#ff5a00] text-white p-4 font-bold uppercase tracking-wider hover:bg-orange-600 transition-colors flex justify-center items-center gap-2"
+                  className="w-full bg-[#8f2f36] text-white p-4 font-bold uppercase tracking-wider hover:bg-[#70252c] transition-colors flex justify-center items-center gap-2"
                 >
                   {t.contact.form.submit}
                   <ChevronRight className="w-5 h-5" />
@@ -657,20 +657,20 @@ export function LandingPage() {
         </div>
       </section>
       {/* ── FOOTER ── */}
-      <footer className="bg-black py-16 border-t border-zinc-900">
+      <footer className="bg-[#292725] py-16 border-t border-[#d8d2ca]">
         <div className="container mx-auto px-6 md:px-12">
           <div className="grid md:grid-cols-4 gap-12 mb-16">
             <div className="md:col-span-2">
               <div className="flex items-center gap-2 mb-6">
-                <div className="w-8 h-8 bg-[#ff5a00] flex items-center justify-center">
+                <div className="w-8 h-8 bg-[#8f2f36] flex items-center justify-center">
                   <Building2 className="w-5 h-5 text-white" />
                 </div>
                 <span className="font-heading text-3xl tracking-wider pt-1">TANGER AJ CONSTRUCTION</span>
               </div>
-              <p className="text-zinc-500 max-w-sm mb-8">{t.footer.tagline}</p>
+              <p className="text-[#68635e] max-w-sm mb-8">{t.footer.tagline}</p>
               <div className="flex gap-4">
                 {['IN', 'FB', 'X'].map((s) => (
-                  <div key={s} className="w-10 h-10 bg-zinc-900 border border-zinc-800 flex items-center justify-center hover:bg-[#ff5a00] hover:border-[#ff5a00] transition-colors cursor-pointer">
+                  <div key={s} className="w-10 h-10 bg-[#e8e4de] border border-[#d8d2ca] flex items-center justify-center hover:bg-[#8f2f36] hover:border-[#8f2f36] transition-colors cursor-pointer">
                     <span className="font-bold text-xs">{s}</span>
                   </div>
                 ))}
@@ -678,22 +678,22 @@ export function LandingPage() {
             </div>
             <div>
               <h4 className="font-heading text-xl mb-6">{t.footer.services}</h4>
-              <ul className="space-y-4 text-zinc-400 font-medium text-sm">
+              <ul className="space-y-4 text-[#5f5a55] font-medium text-sm">
                 {t.footer.serviceLinks.map((s, i) => (
-                  <li key={i}><a href="#services" className="hover:text-[#ff5a00] transition-colors">{s}</a></li>
+                  <li key={i}><a href="#services" className="hover:text-[#8f2f36] transition-colors">{s}</a></li>
                 ))}
               </ul>
             </div>
             <div>
               <h4 className="font-heading text-xl mb-6">{t.footer.company}</h4>
-              <ul className="space-y-4 text-zinc-400 font-medium text-sm">
+              <ul className="space-y-4 text-[#5f5a55] font-medium text-sm">
                 {t.footer.companyLinks.map((l, i) => (
-                  <li key={i}><a href={l.href} className="hover:text-[#ff5a00] transition-colors">{l.label}</a></li>
+                  <li key={i}><a href={l.href} className="hover:text-[#8f2f36] transition-colors">{l.label}</a></li>
                 ))}
               </ul>
             </div>
           </div>
-          <div className="border-t border-zinc-900 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-zinc-600 font-bold">
+          <div className="border-t border-[#d8d2ca] pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-[#817a72] font-bold">
             <p>&copy; {new Date().getFullYear()} TANGER AJ CONSTRUCTION. {t.footer.legal}</p>
             <div className="flex gap-6">
               <a href="#" className="hover:text-white transition-colors">{t.footer.privacy}</a>
