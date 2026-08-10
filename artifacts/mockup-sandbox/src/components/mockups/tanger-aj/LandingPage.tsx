@@ -15,6 +15,8 @@ const translations = {
       projects: 'Réalisations',
       contact: 'Contact',
       quote: 'Demander un devis',
+      edit: 'Modifier le contenu',
+      editing: 'Mode édition actif',
     },
     hero: {
       tagline: 'Construction · Rénovation · Finitions · Patrimoine',
@@ -27,7 +29,7 @@ const translations = {
     },
     stats: [
       { value: '20+', label: "Années d'expérience" },
-      { value: '300+', label: 'Projets livrés' },
+      { value: '31+', label: 'Projets livrés' },
       { value: '100%', label: 'Satisfaction client' },
       { value: '12', label: 'Régions couvertes' },
     ],
@@ -119,6 +121,8 @@ const translations = {
       projects: 'Projects',
       contact: 'Contact',
       quote: 'Get a Quote',
+      edit: 'Edit content',
+      editing: 'Edit mode active',
     },
     hero: {
       tagline: 'Construction · Renovation · Finishes · Heritage',
@@ -131,7 +135,7 @@ const translations = {
     },
     stats: [
       { value: '20+', label: 'Years of Experience' },
-      { value: '300+', label: 'Projects Delivered' },
+      { value: '31+', label: 'Projects Delivered' },
       { value: '100%', label: 'Client Satisfaction' },
       { value: '12', label: 'Regions Covered' },
     ],
@@ -223,6 +227,7 @@ const translations = {
 export function LandingPage() {
   const [lang, setLang] = useState<'fr' | 'en'>('fr');
   const [scrolled, setScrolled] = useState(false);
+  const [editMode, setEditMode] = useState(false);
   const t = translations[lang];
 
   useEffect(() => {
@@ -232,7 +237,7 @@ export function LandingPage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-zinc-100 overflow-x-hidden selection:bg-[#ff5a00] selection:text-white" style={{ fontFamily: "'Manrope', sans-serif" }}>
+    <div className={`min-h-screen bg-[#0a0a0a] text-zinc-100 overflow-x-hidden selection:bg-[#ff5a00] selection:text-white ${editMode ? 'editing' : ''}`} contentEditable={editMode} suppressContentEditableWarning style={{ fontFamily: "'Manrope', sans-serif" }}>
       <style dangerouslySetInnerHTML={{ __html: `
         @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&display=swap');
         .font-heading { font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.02em; }
@@ -245,6 +250,12 @@ export function LandingPage() {
         .lang-btn.active { background: #ff5a00; color: white; }
         .lang-btn:not(.active) { background: transparent; color: #71717a; }
         .lang-btn:not(.active):hover { color: white; }
+        .editing h1, .editing h2, .editing h3, .editing h4, .editing p, .editing li, .editing a, .editing button, .editing label, .editing option {
+          outline: 1px dashed rgba(255, 90, 0, 0.55);
+          outline-offset: 3px;
+          cursor: text;
+        }
+        .editing input, .editing textarea, .editing select { cursor: text; }
       `}} />
       {/* ── NAV ── */}
       <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b ${scrolled ? 'bg-[#0a0a0a]/92 backdrop-blur-md border-white/10 py-3' : 'bg-transparent border-transparent py-5'}`}>
@@ -264,8 +275,18 @@ export function LandingPage() {
           </div>
 
           <div className="flex items-center gap-3">
+            <button
+              type="button"
+              contentEditable={false}
+              suppressContentEditableWarning
+              onClick={() => setEditMode((active) => !active)}
+              className={`hidden lg:flex items-center gap-2 border px-4 py-2 text-[11px] font-bold uppercase tracking-wider transition-colors ${editMode ? 'border-[#ff5a00] bg-[#ff5a00] text-white' : 'border-zinc-700 text-zinc-300 hover:border-[#ff5a00] hover:text-white'}`}
+              title={editMode ? t.nav.editing : t.nav.edit}
+            >
+              {editMode ? '✓' : '✎'} {editMode ? t.nav.editing : t.nav.edit}
+            </button>
             {/* Language toggle */}
-            <div className="flex items-center border border-zinc-700 overflow-hidden rounded-sm">
+            <div contentEditable={false} suppressContentEditableWarning className="flex items-center border border-zinc-700 overflow-hidden rounded-sm">
               <button
                 onClick={() => setLang('fr')}
                 className={`lang-btn px-3 py-1.5 text-xs font-bold uppercase tracking-wider ${lang === 'fr' ? 'active' : ''}`}
@@ -277,12 +298,18 @@ export function LandingPage() {
               >EN</button>
             </div>
 
-            <a href="#contact" className="hidden md:flex items-center gap-2 bg-white text-black px-5 py-2.5 font-bold uppercase text-xs tracking-wider hover:bg-[#ff5a00] hover:text-white transition-colors duration-300">
+            <a href="#contact" contentEditable={false} suppressContentEditableWarning className="hidden md:flex items-center gap-2 bg-white text-black px-5 py-2.5 font-bold uppercase text-xs tracking-wider hover:bg-[#ff5a00] hover:text-white transition-colors duration-300">
               {t.nav.quote} <MoveUpRight className="w-3.5 h-3.5" />
             </a>
           </div>
         </div>
       </nav>
+
+      {editMode && (
+        <div contentEditable={false} suppressContentEditableWarning className="fixed bottom-5 left-1/2 -translate-x-1/2 z-[60] bg-[#ff5a00] text-white px-5 py-3 text-xs font-bold uppercase tracking-wider shadow-2xl">
+          {t.nav.editing} — cliquez sur un texte ou un chiffre pour le remplacer
+        </div>
+      )}
       {/* ── HERO ── */}
       <section className="relative min-h-[100dvh] flex items-center justify-center clip-diagonal bg-[#0a0a0a] pt-20">
         <div className="absolute inset-0 z-0">
@@ -395,7 +422,7 @@ export function LandingPage() {
             <div className="md:col-span-7 relative group">
               <div className="absolute inset-0 bg-[#ff5a00] translate-x-4 translate-y-4 transition-transform group-hover:translate-x-6 group-hover:translate-y-6" />
               <img
-                src="/__mockup/images/tanger-aj-project1_2.jpg"
+            src="/__mockup/images/tanger-aj-project1_color.jpg"
                 alt="Rénovation intérieure avec pose de carrelage"
                 className="relative z-10 w-full aspect-[4/3] object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
               />
@@ -429,7 +456,7 @@ export function LandingPage() {
             <div className="md:col-span-7 md:col-start-6 relative group order-1 md:order-2">
               <div className="absolute inset-0 bg-zinc-800 -translate-x-4 translate-y-4 transition-transform group-hover:-translate-x-6 group-hover:translate-y-6" />
               <img
-                src="/__mockup/images/tanger-aj-project2_2.jpg"
+            src="/__mockup/images/tanger-aj-project2_color.jpg"
                 alt="Restauration d'une façade de patrimoine"
                 className="relative z-10 w-full aspect-[4/3] object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
               />
