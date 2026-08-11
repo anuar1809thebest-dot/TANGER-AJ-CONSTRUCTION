@@ -140,7 +140,7 @@ const translations = {
       scroll: 'Scroll',
     },
     stats: [
-      { value: '20+', label: 'Years of Experience' },
+      { value: '35+', label: 'Years of Experience' },
       { value: '31+', label: 'Projects Delivered' },
       { value: '100%', label: 'Client Satisfaction' },
       { value: '12', label: 'Regions Covered' },
@@ -188,7 +188,7 @@ const translations = {
     },
     advantage: {
       title: "THE TANGER AJ\nADVANTAGE",
-      sub: "We don't make empty promises. We deliver. Our commitment to quality and transparency has set us apart for 20 years.",
+      sub: "We don't make empty promises. We deliver. Our commitment to quality and transparency has set us apart for 35 years.",
       items: [
         { title: 'SAFETY WITHOUT COMPROMISE', desc: "The safety of our teams and clients is non-negotiable. Strict protocols, continuous training, zero accidents." },
         { title: 'ON-TIME DELIVERY', desc: "Meeting deadlines is a matter of trust. We plan with precision and anticipate every challenge to deliver on the promised date." },
