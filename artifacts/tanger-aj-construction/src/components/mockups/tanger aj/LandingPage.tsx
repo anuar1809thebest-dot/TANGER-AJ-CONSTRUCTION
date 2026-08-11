@@ -321,7 +321,7 @@ export function LandingPage() {
           <div className="absolute inset-0 bg-gradient-to-r from-[#f8f7f4]/95 via-[#f8f7f4]/72 to-[#f8f7f4]/15 z-10" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#f8f7f4]/85 via-transparent to-transparent z-10" />
           <img
-            src="/__mockup/images/tanger-aj-hero_2.jpg"
+            src="/images/tanger-aj-hero_2.jpg"
             alt="Chantier de construction d'une maison"
             className="w-full h-full object-cover object-center"
           />
@@ -427,7 +427,7 @@ export function LandingPage() {
             <div className="md:col-span-7 relative group">
               <div className="absolute inset-0 bg-[#8f2f36] translate-x-4 translate-y-4 transition-transform group-hover:translate-x-6 group-hover:translate-y-6" />
               <img
-            src="/__mockup/images/tanger-aj-project1_color.jpg"
+            src="/images/tanger-aj-project1_color.jpg"
                 alt="Rénovation intérieure avec pose de carrelage"
                 className="relative z-10 w-full aspect-[4/3] object-cover transition-all duration-700"
               />
@@ -461,7 +461,7 @@ export function LandingPage() {
             <div className="md:col-span-7 md:col-start-6 relative group order-1 md:order-2">
               <div className="absolute inset-0 bg-[#d8d2ca] -translate-x-4 translate-y-4 transition-transform group-hover:-translate-x-6 group-hover:translate-y-6" />
               <img
-            src="/__mockup/images/tanger-aj-project2_color.jpg"
+            src="/images/tanger-aj-project2_color.jpg"
                 alt="Restauration d'une façade de patrimoine"
                 className="relative z-10 w-full aspect-[4/3] object-cover transition-all duration-700"
               />
@@ -473,7 +473,7 @@ export function LandingPage() {
             <div className="md:col-span-7 relative group">
               <div className="absolute inset-0 bg-[#8f2f36] translate-x-4 translate-y-4 transition-transform group-hover:translate-x-6 group-hover:translate-y-6" />
               <img
-                src="/__mockup/images/tanger-aj-project3_pool.jpg"
+                src="/images/tanger-aj-project3_pool.jpg"
                 alt="Piscine extérieure sur mesure avec terrasse en pierre"
                 className="relative z-10 w-full aspect-[4/3] object-cover transition-transform duration-700 group-hover:scale-[1.02]"
               />
