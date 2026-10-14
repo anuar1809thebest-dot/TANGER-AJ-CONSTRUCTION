@@ -273,9 +273,12 @@ export function LandingPage() {
       <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b ${scrolled ? 'bg-[#f8f7f4]/95 backdrop-blur-md border-[#dedad3] py-3' : 'bg-[#f8f7f4]/80 backdrop-blur-sm border-transparent py-5'}`}>
         <div className="container mx-auto px-6 md:px-12 flex justify-between items-center">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-[#8f2f36] flex items-center justify-center">
-              <Building2 className="w-5 h-5 text-white" />
-            </div>
+            <img
+              src="/tanger-aj-mark.png"
+              alt=""
+              aria-hidden="true"
+              className="h-10 w-10 shrink-0 object-contain"
+            />
             <span className="font-heading text-2xl md:text-3xl tracking-wider pt-1">TANGER AJ</span>
           </div>
 
@@ -703,9 +706,12 @@ export function LandingPage() {
           <div className="grid md:grid-cols-4 gap-12 mb-16">
             <div className="md:col-span-2">
               <div className="flex items-center gap-2 mb-6">
-                <div className="w-8 h-8 bg-[#8f2f36] flex items-center justify-center">
-                  <Building2 className="w-5 h-5 text-white" />
-                </div>
+                <img
+                  src="/tanger-aj-mark.png"
+                  alt=""
+                  aria-hidden="true"
+                  className="h-10 w-10 shrink-0 object-contain"
+                />
                 <span className="font-heading text-3xl tracking-wider pt-1">TANGER AJ CONSTRUCTION</span>
               </div>
               <p className="text-[#68635e] max-w-sm mb-8">{t.footer.tagline}</p>
